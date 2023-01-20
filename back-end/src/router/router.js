@@ -1,13 +1,13 @@
-const express = require('express');
-const { authorizationToken } = require('../middlewares/authorizationToken');
-const routeLogin = require('./routerLogin');
-const routeRegister = require('./routerRegister');
+// const express = require('express');
+// const { authorizationToken } = require('../middlewares/authorizationToken');
+// const routeLogin = require('./routerLogin');
+// const routeRegister = require('./routerRegister');
 
-const routers = express.Router();
+// const routers = express.Router();
 
-routers.use('/login', routeLogin);
-routers.use('/register', routeRegister);
+// routers.use('/login', routeLogin);
+// routers.use('/register', routeRegister);
 
-routers.use(authorizationToken);
+// routers.use(authorizationToken);
 
-module.exports = routers;
+// module.exports = routers;
