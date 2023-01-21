@@ -1,4 +1,4 @@
-const jwtUtil = require('../utils/jwlUtils');
+const jwtUtil = require('../utils/jwtUtil');
 
 const validateToken = (token) => {
   if (!token) {
