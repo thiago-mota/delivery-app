@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     salesProdcut.associate = (models) => {
       salesProdcut.hasOne(models.sale, {
-        foreignKey: 'id', as: 'id' });
+        foreignKey: 'saleid', as: 'sale_id' });
     }
   return Sale;
 }
