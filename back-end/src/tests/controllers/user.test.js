@@ -1,8 +1,5 @@
 const chai = require('chai')
-const sinon = require('sinon')
 const app = require('../../api/app');
-const connection = require('../../../src/database/connection');
-const Model = require('../../models/')
 const chatHttp = require('chai-http');
 const { expect } = require('chai');
 
