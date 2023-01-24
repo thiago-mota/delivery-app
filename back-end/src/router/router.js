@@ -10,6 +10,6 @@ routers.use('/login', routeLogin);
 routers.use('/register', routeRegister);
 routers.use('/products', routeProducts);
 
-routers.use(authorizationToken);
+// routers.use(authorizationToken);
 
 module.exports = routers;

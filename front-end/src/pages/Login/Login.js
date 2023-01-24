@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styles from './Login.module.css';
 
 const STYLE_CLASSNAMES = {
   FORM_VALIDATION: 'form-validation',
   FORM_VALIDATION_SUCCESS: 'form-validation__success',
 };
+const BACKEND_PORT = 3001;
+const SUCCESS = 200;
 
 function Login() {
+  const [isError, setIsError] = useState([]);
+  const { push } = useHistory();
   const { register, handleSubmit, getFieldState, formState: { errors } } = useForm({
     defaultValues: {
       email: '',
@@ -19,9 +23,29 @@ function Login() {
     mode: 'onChange',
   });
 
-  const onSubmit = (data) => {
+  const handleRedirect = (role) => {
+    switch (role) {
+    case 'administrator': return push('/admin/manage');
+    case 'seller': return push('/seller/orders');
+    default: return push('/customer/products');
+    }
+  };
+
+  const onSubmit = async (data) => {
     console.log(errors);
-    axios.post('login', data);
+    try {
+      const { data: { response }, status } = await axios.post('http://localhost:3001/login', data, {
+        port: BACKEND_PORT,
+      });
+      if (status !== SUCCESS) {
+        throw new Error(response?.message);
+      }
+      console.log(response);
+      handleRedirect(response.role);
+    } catch (error) {
+      setIsError([response.message]);
+    }
+    console.log(response);
   };
 
   const { isDirty: isPasswordDirty, error: passwordErrors } = getFieldState('password');
@@ -121,6 +145,8 @@ function Login() {
         </form>
         <div className={ styles['login-hero'] } />
       </main>
+      {isError
+        && isError.map((errorMessage) => <p key="errorMessage">{errorMessage}</p>)}
     </div>
   );
 }
