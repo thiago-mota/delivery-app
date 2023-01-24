@@ -16,11 +16,11 @@ const existenceUser = async ({ email, password }) => User.findOne({
 const loginService = async ({ email, password }) => {
   const newPassword = md5(password);
   const checkUser = await existenceUser({ email, password: newPassword });
-  const userData = { 
-    id: checkUser.id, name: checkUser.name, email: checkUser.email, role: checkUser.role,
+  const response = { 
+    name: checkUser.name, email: checkUser.email, role: checkUser.role,
   };
-  const token = jwt.sign(userData, secretKey, jwtConfig);
-  return { token };
+  const token = jwt.sign(response, secretKey, jwtConfig);
+  return { ...response, token };
 };
 
 module.exports = {
