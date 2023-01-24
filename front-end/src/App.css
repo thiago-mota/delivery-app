@@ -1,21 +1,29 @@
 /* fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;900&display=swap') ;
 
 /* css variables */
 :root {
-  --primary: #000;
-  --secondary: #fff;
+
+  --primary: black;
+
+  --secondary: white;
+
   --bg-dark: #b3ada7;
+
   --bg-light: #f8efe6;
-  --title-font: 'Montserrat', sans-serif;
+
+  --title-font: 'Montserrat' , sans-serif;
 }
 
 
 html {
+  border: 0;
+
   /* 1rem = 10px */
   font-size: 62.5%;
+
   /* css resetter */
   margin: 0;
   padding: 0;
-  border: 0;
 }
