@@ -1,7 +1,7 @@
 const express = require('express');
 const { authorizationToken } = require('../middlewares/authorizationToken');
 const routeLogin = require('./routerLogin');
-const routeRegister = require('./routerRegister');
+const routeRegister = require('./routerUser');
 
 const routers = express.Router();
 
