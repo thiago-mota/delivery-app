@@ -8,13 +8,16 @@ module.exports = (sequelize, DataTypes) => {
       },
     }, {
       underscored: true,
-      tableName: 'salesProduct',
+      tableName: 'salesProducts',
       timestamps: false,
     },
 );
     salesProdcut.associate = (models) => {
-      salesProdcut.hasOne(models.sale, {
-        foreignKey: 'saleid', as: 'sale_id' });
-    };
+      salesProdcut.belongsToMany(models.sale, {
+        foreignKey: 'saleId', as: 'sale_id', otherKey: 'product_id' });
+      salesProdcut.belongsToMany(models.sale, {
+        foreignKey: 'productId', as: 'product_id', otherKey: 'sale_id'
+      })
+      };
   return salesProdcut;
 };

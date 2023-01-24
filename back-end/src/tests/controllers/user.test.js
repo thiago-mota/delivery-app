@@ -50,7 +50,7 @@ describe('test in route register', function () {
     .request(app)
     .post('/register')
     .send( { email: 'batata.com', password: '12' })
-    expect(chaiHttpResponse.status).to.be.equal(409);
-    expect(chaiHttpResponse.body).to.be.equal({ message: "Conflict" })
+    expect(chaiHttpResponse.status).to.be.equal(404);
+    expect(chaiHttpResponse.body).to.be.equal({ message: "User already registered" })
   })
 })
