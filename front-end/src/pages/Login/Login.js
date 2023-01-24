@@ -10,7 +10,7 @@ const STYLE_CLASSNAMES = {
 };
 
 function Login() {
-  const { register, handleSubmit, getFieldState } = useForm({
+  const { register, handleSubmit, getFieldState, formState: { errors } } = useForm({
     defaultValues: {
       email: '',
       password: '',
@@ -20,6 +20,7 @@ function Login() {
   });
 
   const onSubmit = (data) => {
+    console.log(errors);
     axios.post('login', data);
   };
 
