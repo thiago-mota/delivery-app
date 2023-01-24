@@ -16,12 +16,6 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     },
 );
-    User.associate = (models) => {
-      User.hasMany(models.Sale, {
-        as: 'sales',
-        foreingKey: 'user_id',
-        foreingKey: 'seller_id'
-      })
-    }
+
   return User;
 };
