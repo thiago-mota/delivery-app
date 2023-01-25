@@ -12,11 +12,11 @@
   align-items: center;
   align-self: center;
   background-color: white;
-  border-radius: 3%;
+  border-radius: 20px;
   display: flex;
   filter: drop-shadow(0.5rem 0.5rem 2rem var(--bg-dark));
   flex-direction: row;
-  height: 80%;
+  height: 90%;
   max-height: 96rem;
   max-width: 130rem;
   width: 100%;
@@ -29,14 +29,12 @@
   gap: 5rem;
   height: clamp(50rem, 96rem, 100%);
   justify-content: center;
-  max-width: 1200px;
   width: 100%;
 }
 
 .form-label {
   display: flex;
   flex-direction: column;
-  font-family: Helvetica , Arial , sans-serif;
   font-size: 3rem;
   text-align: center;
   width: 80%;
@@ -44,7 +42,7 @@
 
 .form-label input {
   all: unset;
-  border: 0.5rem solid var(--bg-light);
+  border: 0.3rem solid var(--bg-light);
   border-radius: 1rem;
   font-size: 2rem;
   height: 4rem;
@@ -73,7 +71,7 @@
   border: 0.5rem solid var(--bg-light);
   border-radius: 1rem;
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 600;
   height: 4rem;
   padding: 1rem 2rem;
   text-align: center;
