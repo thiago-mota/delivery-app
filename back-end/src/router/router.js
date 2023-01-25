@@ -1,5 +1,6 @@
 const express = require('express');
 // const { authorizationToken } = require('../middlewares/authorizationToken');
+const errorMiddleware = require('../middlewares/errorMiddleware');
 const routeLogin = require('./routerLogin');
 const routeUsers = require('./routerUser');
 const routeProducts = require('./routerProducts');
@@ -11,5 +12,6 @@ routers.use('/users', routeUsers);
 routers.use('/products', routeProducts);
 
 // routers.use(authorizationToken);
+routers.use(errorMiddleware);
 
 module.exports = routers;

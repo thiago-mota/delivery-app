@@ -10,7 +10,7 @@ const create = async (req, res) => {
       role: role || 'customer',
     });
 
-    return res.status(201).json(newUser);
+    return res.status(201).json({ response: newUser });
   } catch (e) {
     console.log(e.message);
     if (e.message === 'User already registered') {
