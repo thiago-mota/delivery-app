@@ -100,10 +100,10 @@ function Register() {
               { ...register('password', {
                 required: 'Password é obrigatório',
                 minLength: { value: 6, message: 'Password is too short!' },
-                pattern: {
-                  value: /^(?=.*[A-Z])[A-Za-z\d]*$/,
-                  message: 'Please enter at least one uppercase letter!',
-                },
+                // pattern: {
+                //   value: /^(?=.*[A-Z])[A-Za-z\d]*$/,
+                //   message: 'Please enter at least one uppercase letter!',
+                // },
               }) }
             />
             {errors?.password && <p>{errors.password.message}</p>}
