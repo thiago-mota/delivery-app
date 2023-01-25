@@ -155,13 +155,6 @@ function Login() {
           >
             LOGIN
           </button>
-<<<<<<< HEAD
-          <button type="submit" data-testid="common_login__button-register">
-            <Link to="/register">
-              SIGN UP
-            </Link>
-          </button>
-=======
           <button
             type="button"
             onClick={ () => push('/register') }
@@ -178,7 +171,6 @@ function Login() {
                 {errorMessage}
               </p>
             ))}
->>>>>>> 550870b1c09fbea6903f895abcc770ff6d24ecb0
         </form>
         <div className={ styles['login-hero'] } />
       </main>
