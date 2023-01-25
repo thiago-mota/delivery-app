@@ -45,7 +45,6 @@ function Login() {
     } catch (error) {
       setIsError([response.message]);
     }
-    console.log(response);
   };
 
   const { isDirty: isPasswordDirty, error: passwordErrors } = getFieldState('password');
