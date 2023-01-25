@@ -1,5 +1,6 @@
 const express = require('express');
-const { authorizationToken } = require('../middlewares/authorizationToken');
+// const { authorizationToken } = require('../middlewares/authorizationToken');
+const errorMiddleware = require('../middlewares/errorMiddleware');
 const routeLogin = require('./routerLogin');
 const routeRegister = require('./routerUser');
 const routeProducts = require('./routerProducts');
