@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styles from './Login.module.css';
 
 const STYLE_CLASSNAMES = {
@@ -14,7 +14,13 @@ const SUCCESS = 200;
 function Login() {
   const [isError, setIsError] = useState([]);
   const { push } = useHistory();
-  const { register, handleSubmit, getFieldState, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    getFieldState,
+    formState: { isValid, errors },
+    reset,
+  } = useForm({
     defaultValues: {
       email: '',
       password: '',
@@ -25,16 +31,22 @@ function Login() {
 
   const handleRedirect = (role) => {
     switch (role) {
-    case 'administrator': return push('/admin/manage');
-    case 'seller': return push('/seller/orders');
-    default: return push('/customer/products');
+    case 'administrator':
+      return push('/admin/manage');
+    case 'seller':
+      return push('/seller/orders');
+    default:
+      return push('/customer/products');
     }
   };
 
   const onSubmit = async (data) => {
     console.log(errors);
     try {
-      const { data: { response }, status } = await axios.post('http://localhost:3001/login', data, {
+      const {
+        data: { response },
+        status,
+      } = await axios.post('http://localhost:3001/login', data, {
         port: BACKEND_PORT,
       });
       if (status !== SUCCESS) {
@@ -43,7 +55,11 @@ function Login() {
       console.log(response);
       handleRedirect(response.role);
     } catch (error) {
-      setIsError([response.message]);
+      console.log(error);
+      setIsError([
+        error?.response?.data?.message
+          || 'Você quebrou o app! Espero que esteja feliz! :(',
+      ]);
     }
   };
 
@@ -66,7 +82,7 @@ function Login() {
               { ...register('email', {
                 required: 'Please put an email!',
                 pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/,
+                  value: /^\S+@\S+\.\S+$/,
                   message: 'Please enter a valid email!',
                 },
               }) }
@@ -135,17 +151,27 @@ function Login() {
               Password must have at least one uppercase letter
             </p>
           </label>
-          <button type="submit" data-testid="common_login__button-login">
+          <button
+            type="submit"
+            data-testid="common_login__button-login"
+            disabled={ !isValid }
+          >
             LOGIN
           </button>
-          <Link to="/register" data-testid="common_login__button-register">
+          <button
+            type="button"
+            onClick={ () => push('/register') }
+            data-testid="common_login__button-register"
+          >
             SIGN UP
-          </Link>
+          </button>
+          {isError
+            && isError.map((errorMessage) => (
+              <p key="errorMessage">{errorMessage}</p>
+            ))}
         </form>
         <div className={ styles['login-hero'] } />
       </main>
-      {isError
-        && isError.map((errorMessage) => <p key="errorMessage">{errorMessage}</p>)}
     </div>
   );
 }
