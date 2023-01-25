@@ -81,7 +81,7 @@ function Register() {
               { ...register('email', {
                 required: 'Email é obrigatório',
                 pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/,
+                  value: /^\S+@\S+\.\S+$/,
                   message: 'Email deve ser no formato exemplo@exemplo.com',
                 },
               }) }
