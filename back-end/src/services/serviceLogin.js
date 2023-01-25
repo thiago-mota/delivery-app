@@ -29,8 +29,8 @@ const loginService = async ({ email, password }) => {
   if (!requestType) throw new ErrorGenerator(403, 'bad request');
   
   const user = await findUserbyEmail({ email });
-  if (!user) throw new ErrorGenerator(404, 'user not found');
-   
+  if (!user) throw new ErrorGenerator(404, 'Not found');
+  
   const newPassword = md5(password);
   if (user.password !== newPassword) throw new ErrorGenerator(401, 'wrong password');
   const checkUser = await existenceUser({ email, password: newPassword });
