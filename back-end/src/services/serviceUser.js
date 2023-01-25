@@ -11,6 +11,19 @@ const createService = async ({ name, email, password, role }) => {
   return { token };
 };
 
+const getAllService = async () => {
+  const users = await User.findAll();
+
+  return users;
+};
+
+const getByIdService = async (id) => {
+  const deleteUserId = await User.destroy({ where: { id } });
+  return deleteUserId;
+};
+
 module.exports = {
   createService,
+  getAllService,
+  getByIdService,
 };
