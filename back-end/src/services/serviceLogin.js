@@ -20,11 +20,12 @@ const findUserbyEmail = async ({ email }) => User.findOne({
 
 const isBadRequest = ({ email, password }) => {
   const isValidEmail = /\S+@\S+\.\S+/;
-  return isValidEmail.test(email) && password.length > 6;
+  return isValidEmail.test(email) && password.length >= 6;
 };
 
 const loginService = async ({ email, password }) => {
   const requestType = isBadRequest({ email, password });
+  console.log(requestType);
   
   if (!requestType) throw new ErrorGenerator(403, 'bad request');
   
