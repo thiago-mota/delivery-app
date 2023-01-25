@@ -47,76 +47,76 @@ function Register() {
   };
 
   return (
-    <div className={styles['login-page']}>
-      <main className={styles['login-container']}>
+    <div className={ styles['login-page'] }>
+      <main className={ styles['login-container'] }>
         <form
-          onSubmit={handleSubmit(onSubmit)}
-          className={styles['form-container']}
+          onSubmit={ handleSubmit(onSubmit) }
+          className={ styles['form-container'] }
         >
-          <label htmlFor="name" className={styles[STYLE_CLASSNAMES.FORM_LABEL]}>
+          <label htmlFor="name" className={ styles[STYLE_CLASSNAMES.FORM_LABEL] }>
             Nome Completo
             <input
               type="name"
               id="name"
               data-testid="common_register__input-name"
-              {...register('name', {
+              { ...register('name', {
                 required: 'Nome é obrigatório',
                 minLength: {
                   value: 12,
                   message: 'Nome completo deve ter pelo menos 12 letras',
                 },
-              })}
+              }) }
             />
             {errors?.name && <p>{errors.name.message}</p>}
           </label>
           <label
             htmlFor="email"
-            className={styles[STYLE_CLASSNAMES.FORM_LABEL]}
+            className={ styles[STYLE_CLASSNAMES.FORM_LABEL] }
           >
             Email
             <input
               type="email"
               id="email"
               data-testid="common_register__input-email"
-              {...register('email', {
+              { ...register('email', {
                 required: 'Email é obrigatório',
                 pattern: {
                   value: /^\S+@\S+\.\S+$/,
                   message: 'Email deve ser no formato exemplo@exemplo.com',
                 },
-              })}
+              }) }
             />
             {errors?.email && <p>{errors.email.message}</p>}
           </label>
           <label
             htmlFor="password"
-            className={styles[STYLE_CLASSNAMES.FORM_LABEL]}
+            className={ styles[STYLE_CLASSNAMES.FORM_LABEL] }
           >
             Password
             <input
               type="password"
               id="password"
               data-testid="common_register__input-password"
-              {...register('password', {
+              { ...register('password', {
                 required: 'Password é obrigatório',
                 minLength: { value: 6, message: 'Password is too short!' },
                 pattern: {
                   value: /^(?=.*[A-Z])[A-Za-z\d]*$/,
                   message: 'Please enter at least one uppercase letter!',
                 },
-              })}
+              }) }
             />
             {errors?.password && <p>{errors.password.message}</p>}
           </label>
           <button
             type="submit"
             data-testid="common_register__button-register"
-            disabled={!isValid}
+            disabled={ !isValid }
           >
             CADASTRAR
           </button>
-          {isError &&
-            isError.map((errorMessage) => (
+          {isError
+            && isError.map((errorMessage) => (
               <p
                 key="errorMessage"
                 data-testid="common_register__element-invalid_register"
