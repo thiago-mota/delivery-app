@@ -174,6 +174,7 @@ function Login() {
         </form>
         <div className={ styles['login-hero'] } />
       </main>
+    </div>
   );
 }
 
