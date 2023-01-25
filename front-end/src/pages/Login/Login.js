@@ -115,9 +115,11 @@ function Login() {
           <button type="submit" data-testid="common_login__button-login">
             LOGIN
           </button>
-          <Link to="/register" data-testid="common_login__button-register">
-            SIGN UP
-          </Link>
+          <button type="submit" data-testid="common_login__button-register">
+            <Link to="/register">
+              SIGN UP
+            </Link>
+          </button>
         </form>
         <div className={ styles['login-hero'] } />
       </main>
