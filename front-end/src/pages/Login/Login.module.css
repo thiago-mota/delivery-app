@@ -12,11 +12,11 @@
   align-items: center;
   align-self: center;
   background-color: white;
-  border-radius: 3%;
+  border-radius: 20px;
   display: flex;
   filter: drop-shadow(0.5rem 0.5rem 2rem var(--bg-dark));
   flex-direction: row;
-  height: 80%;
+  height: 85%;
   max-height: 96rem;
   max-width: 130rem;
   width: 100%;
@@ -26,33 +26,33 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 5rem;
-  height: clamp(50rem, 96rem, 100%);
+  gap: 2rem;
+  height: 90%;
   justify-content: center;
-  max-width: 1200px;
   width: 100%;
 }
 
 .form-label {
   display: flex;
   flex-direction: column;
-  font-family: Helvetica , Arial , sans-serif;
   font-size: 3rem;
+  font-weight: 600;
   text-align: center;
   width: 80%;
 }
 
 .form-label input {
   all: unset;
-  border: 0.5rem solid var(--bg-light);
+  border: 0.3rem solid var(--bg-light);
   border-radius: 1rem;
   font-size: 2rem;
-  height: 4rem;
+  height: 3rem;
   padding: 1rem 2rem;
 }
 
 .form-label p {
-  font-size: 1.9rem;
+  font-size: 1.7rem;
+  font-weight: 400;
   height: 1rem;
   margin-left: 2rem;
   text-align: start;
@@ -73,9 +73,9 @@
   border: 0.5rem solid var(--bg-light);
   border-radius: 1rem;
   font-size: 2rem;
-  font-weight: 900;
-  height: 4rem;
-  padding: 1rem 2rem;
+  font-weight: 600;
+  height: 3rem;
+  padding: 1rem 1rem;
   text-align: center;
   width: min(80%, 50rem);
 }
@@ -96,7 +96,7 @@
 .login-hero {
   background-color: black;
   background-image: url('../../images/cooking-small.jpg');
-  border-radius: 6% 3% 3% 6%;
+  border-radius: 0px 20px 20px 0px;
   flex-shrink: 1;
   height: 100%;
   object-fit: cover;
