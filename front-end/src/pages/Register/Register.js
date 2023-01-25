@@ -7,8 +7,6 @@ import styles from './Register.module.css';
 const STYLE_CLASSNAMES = {
   FORM_LABEL: 'form-label',
 };
-const BACKEND_PORT = 3001;
-const SUCCESS = 201;
 
 function Register() {
   const [isError, setIsError] = useState([]);
@@ -27,23 +25,27 @@ function Register() {
     mode: 'onBlur',
   });
 
-  const onSubmit = async (data) => {
-    try {
-      const {
-        data: { response },
-        status,
-      } = await axios.post('http://localhost:3001/register', data, {
-        port: BACKEND_PORT,
-      });
-      if (status !== SUCCESS) {
-        throw new Error(response?.message);
-      }
-      push('/customer/products');
-    } catch (error) {
-      setIsError([response.message]);
+  const handleError = (error) => {
+    const statusCode = error.response.status;
+    const badResponse = 409;
+    if (statusCode === badResponse) {
+      setIsError(['Email não disponível ou já cadastrado']);
     }
   };
-  console.log(isValid, errors);
+
+  const onSubmit = async (data) => {
+    console.log('data', data);
+    try {
+      const {
+        data: { token },
+      } = await axios.post('http://localhost:3001/register', data);
+      console.log(token);
+      push('/customer/products');
+    } catch (error) {
+      handleError(error);
+    }
+  };
+
   return (
     <div className={ styles['login-page'] }>
       <main className={ styles['login-container'] }>
