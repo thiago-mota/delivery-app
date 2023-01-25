@@ -1,6 +1,6 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import styles from './Register.module.css';
 
@@ -38,7 +38,7 @@ function Register() {
     try {
       const {
         data: { token },
-      } = await axios.post('http://localhost:3001/register', data);
+      } = await axios.post('http://localhost:3001/users', data);
       console.log(token);
       push('/customer/products');
     } catch (error) {
