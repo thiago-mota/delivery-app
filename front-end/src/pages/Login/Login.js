@@ -19,7 +19,6 @@ function Login() {
     handleSubmit,
     getFieldState,
     formState: { isValid, errors },
-    reset,
   } = useForm({
     defaultValues: {
       email: '',
@@ -175,7 +174,6 @@ function Login() {
         </form>
         <div className={ styles['login-hero'] } />
       </main>
-    </div>
   );
 }
 
