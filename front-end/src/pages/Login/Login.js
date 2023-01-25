@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styles from './Login.module.css';
 
 const STYLE_CLASSNAMES = {
@@ -14,7 +14,12 @@ const SUCCESS = 200;
 function Login() {
   const [isError, setIsError] = useState([]);
   const { push } = useHistory();
-  const { register, handleSubmit, getFieldState, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    getFieldState,
+    formState: { isValid, errors },
+  } = useForm({
     defaultValues: {
       email: '',
       password: '',
@@ -25,16 +30,22 @@ function Login() {
 
   const handleRedirect = (role) => {
     switch (role) {
-    case 'administrator': return push('/admin/manage');
-    case 'seller': return push('/seller/orders');
-    default: return push('/customer/products');
+    case 'administrator':
+      return push('/admin/manage');
+    case 'seller':
+      return push('/seller/orders');
+    default:
+      return push('/customer/products');
     }
   };
 
   const onSubmit = async (data) => {
     console.log(errors);
     try {
-      const { data: { response }, status } = await axios.post('http://localhost:3001/login', data, {
+      const {
+        data: { response },
+        status,
+      } = await axios.post('http://localhost:3001/login', data, {
         port: BACKEND_PORT,
       });
       if (status !== SUCCESS) {
@@ -43,9 +54,10 @@ function Login() {
       console.log(response);
       handleRedirect(response.role);
     } catch (error) {
-      setIsError([response.message]);
+      console.log(error);
+      const errorMessage = error?.response?.data?.message || error.message;
+      setIsError([errorMessage]);
     }
-    console.log(response);
   };
 
   const { isDirty: isPasswordDirty, error: passwordErrors } = getFieldState('password');
@@ -67,7 +79,7 @@ function Login() {
               { ...register('email', {
                 required: 'Please put an email!',
                 pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/,
+                  value: /^\S+@\S+\.\S+$/,
                   message: 'Please enter a valid email!',
                 },
               }) }
@@ -102,10 +114,10 @@ function Login() {
               { ...register('password', {
                 required: 'Please put a password!',
                 minLength: { value: 6, message: 'Password is too short!' },
-                pattern: {
-                  value: /^(?=.*[A-Z])[A-Za-z\d]*$/,
-                  message: 'Please enter at least one uppercase letter!',
-                },
+                // pattern: {
+                //   value: /^(?=.*[A-Z])[A-Za-z\d]*$/,
+                //   message: 'Please enter at least one uppercase letter!',
+                // },
               }) }
             />
             <p
@@ -126,7 +138,7 @@ function Login() {
             >
               Password minimum length is at least six characters long
             </p>
-            <p
+            {/* <p
               className={ `${styles[STYLE_CLASSNAMES.FORM_VALIDATION]} ${
                 isPasswordDirty && !passwordErrors?.types?.pattern
                   ? styles[STYLE_CLASSNAMES.FORM_VALIDATION_SUCCESS]
@@ -134,21 +146,42 @@ function Login() {
               }` }
             >
               Password must have at least one uppercase letter
-            </p>
+            </p> */}
           </label>
-          <button type="submit" data-testid="common_login__button-login">
+          <button
+            type="submit"
+            data-testid="common_login__button-login"
+            disabled={ !isValid }
+          >
             LOGIN
           </button>
+<<<<<<< HEAD
           <button type="submit" data-testid="common_login__button-register">
             <Link to="/register">
               SIGN UP
             </Link>
           </button>
+=======
+          <button
+            type="button"
+            onClick={ () => push('/register') }
+            data-testid="common_login__button-register"
+          >
+            SIGN UP
+          </button>
+          {isError
+            && isError.map((errorMessage) => (
+              <p
+                key="errorMessage"
+                data-testid="common_login__element-invalid-email"
+              >
+                {errorMessage}
+              </p>
+            ))}
+>>>>>>> 550870b1c09fbea6903f895abcc770ff6d24ecb0
         </form>
         <div className={ styles['login-hero'] } />
       </main>
-      {isError
-        && isError.map((errorMessage) => <p key="errorMessage">{errorMessage}</p>)}
     </div>
   );
 }

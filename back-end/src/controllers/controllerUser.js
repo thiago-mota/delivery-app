@@ -10,7 +10,7 @@ const create = async (req, res) => {
       role: role || 'customer',
     });
 
-    return res.status(201).json(newUser);
+    return res.status(201).json({ response: newUser });
   } catch (e) {
     console.log(e.message);
     if (e.message === 'User already registered') {
@@ -20,6 +20,28 @@ const create = async (req, res) => {
   }
 };
 
+const getAll = async (_req, res) => {
+  try {
+    const users = await ServiceUser.getAllService();
+    return res.status(200).json(users);
+  } catch (e) {
+    console.log(e.message);
+    res.status(500).json({ message: 'Ocorreu um erro' });
+  }
+};
+
+const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.body;
+    await ServiceUser.getByIdService(id);
+    res.status(200).end();
+  } catch (e) {
+    return res.status(400).json({ message: e.message });
+  }
+};
+
 module.exports = {
   create,
+  getAll,
+  deleteUser,
 };
