@@ -19,7 +19,7 @@ const findUserbyEmail = async ({ email }) => User.findOne({
 });
 
 const isBadRequest = ({ email, password }) => {
-  const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/gi;
+  const isValidEmail = /\S+@\S+\.\S+/;
   return isValidEmail.test(email) && password.length > 6;
 };
 
