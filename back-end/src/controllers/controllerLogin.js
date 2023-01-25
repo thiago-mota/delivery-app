@@ -6,7 +6,7 @@ const login = async (req, res, next) => {
     const newLogin = await ServiceLogin.loginService({ email, password });
     return res.status(200).json({ message: 'success', response: newLogin });
   } catch (err) {
-    next(err)
+    next(err);
   }
 };
 
