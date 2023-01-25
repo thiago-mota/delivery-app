@@ -56,10 +56,8 @@ function Login() {
       handleRedirect(response.role);
     } catch (error) {
       console.log(error);
-      setIsError([
-        error?.response?.data?.message
-          || 'Você quebrou o app! Espero que esteja feliz! :(',
-      ]);
+      const errorMessage = error?.response?.data?.message || error.message;
+      setIsError([errorMessage]);
     }
   };
 
@@ -117,10 +115,10 @@ function Login() {
               { ...register('password', {
                 required: 'Please put a password!',
                 minLength: { value: 6, message: 'Password is too short!' },
-                pattern: {
-                  value: /^(?=.*[A-Z])[A-Za-z\d]*$/,
-                  message: 'Please enter at least one uppercase letter!',
-                },
+                // pattern: {
+                //   value: /^(?=.*[A-Z])[A-Za-z\d]*$/,
+                //   message: 'Please enter at least one uppercase letter!',
+                // },
               }) }
             />
             <p
@@ -141,7 +139,7 @@ function Login() {
             >
               Password minimum length is at least six characters long
             </p>
-            <p
+            {/* <p
               className={ `${styles[STYLE_CLASSNAMES.FORM_VALIDATION]} ${
                 isPasswordDirty && !passwordErrors?.types?.pattern
                   ? styles[STYLE_CLASSNAMES.FORM_VALIDATION_SUCCESS]
@@ -149,7 +147,7 @@ function Login() {
               }` }
             >
               Password must have at least one uppercase letter
-            </p>
+            </p> */}
           </label>
           <button
             type="submit"
@@ -167,7 +165,12 @@ function Login() {
           </button>
           {isError
             && isError.map((errorMessage) => (
-              <p key="errorMessage">{errorMessage}</p>
+              <p
+                key="errorMessage"
+                data-testid="common_login__element-invalid-email"
+              >
+                {errorMessage}
+              </p>
             ))}
         </form>
         <div className={ styles['login-hero'] } />
