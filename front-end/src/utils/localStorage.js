@@ -1,5 +1,5 @@
 export const createLocalStorage = (key) => {
-  if (!localStorage.getItem(key)) { localStorage.setItem(key, {}); }
+  if (!localStorage.getItem(key)) { localStorage.setItem(key, '{}'); }
 };
 
 export const getLocalStorage = (key) => {
@@ -10,7 +10,7 @@ export const getLocalStorage = (key) => {
 };
 
 export const setLocalStorage = (key, data) => {
-  createLocalStorage();
-  const stringfiedData = JSON.stringify(key, data);
+  createLocalStorage(key);
+  const stringfiedData = JSON.stringify(data);
   localStorage.setItem(key, stringfiedData);
 };
