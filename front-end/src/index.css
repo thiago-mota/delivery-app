@@ -3,6 +3,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Montserrat', sans-serif;
   margin: 0;
+  background-color: #1d1d1d;
 }
 
 code {
