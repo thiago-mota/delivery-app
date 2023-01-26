@@ -19,6 +19,7 @@
     "lint:styles": "stylelint **/*.css --config .stylelintrc.json --ignore-disables --allow-empty-input"
   },
   "dependencies": {
+    "@redux-devtools/extension": "^3.2.3",
     "@testing-library/jest-dom": "5.16.2",
     "@testing-library/react": "12.1.4",
     "@testing-library/user-event": "13.5.0",
@@ -28,6 +29,8 @@
     "react-hook-form": "^7.42.1",
     "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "serve": "13.0.2",
     "web-vitals": "2.1.4"
   },
@@ -65,6 +68,9 @@
       "reportWebVitals.js",
       "./services/renderWithRouter",
       "./services/history"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^axios$": "axios/dist/axios.js"
+    }
   }
 }
