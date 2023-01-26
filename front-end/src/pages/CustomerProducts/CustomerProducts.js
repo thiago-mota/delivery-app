@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../../components/Header/Header';
 import Product from '../../components/Product/Product';
 import useFetch from '../../hooks/useFetch';
 import styles from './CustomerProducts.module.css';
@@ -26,16 +27,19 @@ function CustomerProducts() {
   const products = data?.data;
   console.log(products, isLoading);
   return (
-    <div className={ styles['margin-container'] }>
-      <div className={ styles.container }>
-        <div className={ styles['products-container'] }>
-          {!isLoading
-            && products?.map((product) => (
-              <Product product={ product } key={ product.id } />
-            ))}
+    <>
+      <Header />
+      <div className={ styles['margin-container'] }>
+        <div className={ styles.container }>
+          <div className={ styles['products-container'] }>
+            {!isLoading
+              && products?.map((product) => (
+                <Product product={ product } key={ product.id } />
+              ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

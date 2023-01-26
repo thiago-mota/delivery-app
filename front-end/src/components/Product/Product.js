@@ -4,25 +4,26 @@ import QuantityControl from '../QuantityControl/QuantityControl';
 import styles from './Product.module.css';
 
 function Product({ product: { urlImage, price, name, id } }) {
-  console.log(urlImage, 'xablau');
   return (
-    <div className={ styles.container }>
-      <span data-testid={ `customer_products__element-card-price-${id}` }>
-        {Intl.NumberFormat('pt-BR', {
-          style: 'currency',
-          currency: 'BRL',
-        }).format(price)}
-      </span>
-      <img
-        src={ urlImage }
-        alt={ name }
-        data-testid={ `customer_products__img-card-bg-image-${id}` }
-      />
-      <div>
-        <span data-testid={ `customer_products__element-card-title-${id}` }>
-          {name}
+    <div className={styles['margin-container']}>
+      <div className={ styles.container }>
+        <span data-testid={ `customer_products__element-card-price-${id}` }>
+          {Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          }).format(price)}
         </span>
-        <QuantityControl id={ id } />
+        <img
+          src={ urlImage }
+          alt={ name }
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
+        />
+        <div>
+          <span data-testid={ `customer_products__element-card-title-${id}` }>
+            {name}
+          </span>
+          <QuantityControl id={ id } />
+        </div>
       </div>
     </div>
   );
