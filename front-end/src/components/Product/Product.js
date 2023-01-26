@@ -6,23 +6,27 @@ import styles from './Product.module.css';
 function Product({ product: { urlImage, price, name, id } }) {
   return (
     <div className={styles['margin-container']}>
-      <div className={ styles.container }>
-        <span data-testid={ `customer_products__element-card-price-${id}` }>
+      <div className={styles.container}>
+        <span data-testid={`customer_products__element-card-price-${id}`}>
           {Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL',
           }).format(price)}
         </span>
         <img
-          src={ urlImage }
-          alt={ name }
-          data-testid={ `customer_products__img-card-bg-image-${id}` }
+          className={styles['product-image']}
+          src={urlImage}
+          alt={name}
+          data-testid={`customer_products__img-card-bg-image-${id}`}
         />
         <div>
-          <span data-testid={ `customer_products__element-card-title-${id}` }>
+          <span
+            data-testid={`customer_products__element-card-title-${id}`}
+            className={styles['product-title']}
+          >
             {name}
           </span>
-          <QuantityControl id={ id } />
+          <QuantityControl id={id} />
         </div>
       </div>
     </div>

@@ -19,6 +19,7 @@ function Login() {
     handleSubmit,
     getFieldState,
     formState: { isValid, errors },
+    getValues,
   } = useForm({
     defaultValues: {
       email: '',
@@ -37,6 +38,11 @@ function Login() {
     default:
       return push('/customer/products');
     }
+  };
+
+  const saveUserToLocalStorage = () => {
+    const userData = getValues();
+    localStorage.setItem('user', userData);
   };
 
   const onSubmit = async (data) => {
