@@ -22,16 +22,16 @@ const FETCH_OPTIONS = {
 // ]
 
 function CustomerProducts() {
-  const [data, isLoading, isError] = useFetch(FETCH_OPTIONS);
+  const [data, isLoading] = useFetch(FETCH_OPTIONS);
   const products = data?.data;
   console.log(products, isLoading);
   return (
-    <div className={ styles['margin-container']}>
+    <div className={ styles['margin-container'] }>
       <div className={ styles.container }>
-        <div className={ styles['products-container']}>
-          {!isLoading &&
-            products?.map((product) => (
-              <Product product={ product } key={product.id} />
+        <div className={ styles['products-container'] }>
+          {!isLoading
+            && products?.map((product) => (
+              <Product product={ product } key={ product.id } />
             ))}
         </div>
       </div>
