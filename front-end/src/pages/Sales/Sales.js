@@ -1,6 +1,6 @@
 import React from 'react';
 import SaleCard from '../../components/CardSales/Card';
-import styles from './Pedidos.module.css';
+import styles from './Sales.module.css';
 
 const order = {
   id: 1,
