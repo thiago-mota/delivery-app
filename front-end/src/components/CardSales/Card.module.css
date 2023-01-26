@@ -1,16 +1,16 @@
 .link-card {
-  text-decoration: none;
   color: black;
+  text-decoration: none;
 }
 
 .container {
-  display: flex;
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
   border-radius: 1rem;
-  min-width: 30rem;
-  max-width: 45rem;
+  display: flex;
   max-height: 12rem;
+  max-width: 45rem;
   min-height: 6rem;
+  min-width: 30rem;
 }
 
 .container p {
@@ -18,26 +18,26 @@
 }
 
 .id {
-  background-color: white;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  background-color: white;
+  border-radius: 1rem;
+  display: flex;
   flex-wrap: wrap;
   height: 10rem;
-  border-radius: 1rem;
+  justify-content: center;
   max-width: 6rem;
-  text-align: center;
   padding: 1rem;
+  text-align: center;
 }
 
 .status {
-  background-color: #CCB800;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  height: 8rem;
-  width: 12rem;
+  background-color: #ccb800;
   border-radius: 1rem;
+  display: flex;
+  height: 8rem;
+  justify-content: center;
+  width: 12rem;
 }
 
 .order-data {
@@ -50,14 +50,14 @@
 }
 
 .date-value {
-  background-color: white;
-  width: 10rem;
-  height: 3rem;
-  padding: 0rem 2rem;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  background-color: white;
   border-radius: 1rem;
+  display: flex;
+  height: 3rem;
+  justify-content: center;
+  padding: 0 2rem;
+  width: 10rem;
 }
 
 .address {
