@@ -7,7 +7,7 @@ import Register from '../pages/Register/Register';
 function Routes() {
   return (
     <Switch>
-      <Route path="/costumer/products" component={ CustomerProducts } />
+      <Route path="/customer/products" component={ CustomerProducts } />
       <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
       <Redirect exact from="/" to="/login" />

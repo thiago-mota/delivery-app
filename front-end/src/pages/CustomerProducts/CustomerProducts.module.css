@@ -1,0 +1,12 @@
+.container {
+  max-width: 120rem;
+  margin: auto;
+  height: fit-content;
+  padding: 2rem;
+}
+
+.products-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
