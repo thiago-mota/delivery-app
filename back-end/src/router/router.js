@@ -12,8 +12,8 @@ routers.use('/login', routeLogin);
 routers.use('/users', routeUsers);
 routers.use('/products', routeProducts);
 
-routers.use(authorizationToken);
-routers.use('/checkout', routeCheckout);
+routers.use('/', routeCheckout);
 routers.use('/customer/products', routeProducts);
+routers.use(authorizationToken);
 
 module.exports = routers;

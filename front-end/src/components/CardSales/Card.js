@@ -58,19 +58,15 @@ function SaleCard({ order, role }) {
   );
 }
 
-const itemProp = {
-  dataTestId: PropTypes.string,
-  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
-
 SaleCard.propTypes = {
   order: PropTypes.shape({
-    id: PropTypes.shape(itemProp),
-    status: PropTypes.shape(itemProp),
-    saleDate: PropTypes.shape(itemProp),
-    totalPrice: PropTypes.shape(itemProp),
-    deliveryAddress: PropTypes.shape(itemProp),
+    id: PropTypes.number,
+    status: PropTypes.string,
+    saleDate: PropTypes.instanceOf(),
+    totalPrice: PropTypes.string,
+    deliveryAddress: PropTypes.string,
   }).isRequired,
   role: PropTypes.string.isRequired,
 };
+
 export default SaleCard;
