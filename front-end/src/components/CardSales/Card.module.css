@@ -4,7 +4,7 @@
 }
 
 .container {
-  background-color: #e5e5e5;
+  background-color: var(--bg-light);
   border-radius: 1rem;
   display: flex;
   max-height: 12rem;
@@ -19,7 +19,7 @@
 
 .id {
   align-items: center;
-  background-color: white;
+  background-color: var(--secondary);
   border-radius: 1rem;
   display: flex;
   flex-wrap: wrap;
@@ -32,7 +32,7 @@
 
 .status {
   align-items: center;
-  background-color: #ccb800;
+  background-color: var(--grenn-status);
   border-radius: 1rem;
   display: flex;
   height: 8rem;
@@ -51,7 +51,7 @@
 
 .date-value {
   align-items: center;
-  background-color: white;
+  background-color: var(--secondary);
   border-radius: 1rem;
   display: flex;
   height: 3rem;

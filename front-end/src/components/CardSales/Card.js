@@ -13,14 +13,14 @@ function SaleCard({ order, role }) {
 
         <div
           className={ styles.id }
-          data-testid={ `${id.dataTestId}${id}` }
+          data-testid={ `seller_orders__element-order-id-${id}` }
         >
           <p>{`Pedido ${id}`}</p>
         </div>
 
         <div
           className={ styles.status }
-          data-testid={ `${status.dataTestId}${id}` }
+          data-testid={ `seller_orders__element-delivery-status-${id}` }
         >
           <p>{status}</p>
         </div>
@@ -30,14 +30,14 @@ function SaleCard({ order, role }) {
 
             <p
               className={ styles['date-value'] }
-              data-testid={ `${saleDate.dataTestId}${id}` }
+              data-testid={ `seller_orders__element-order-date-${id}` }
             >
               { moment(saleDate).format('DD/MM/YYYY') }
             </p>
 
             <p
               className={ styles['date-value'] }
-              data-testid={ `${totalPrice.dataTestId}${id}` }
+              data-testid={ `seller_orders__element-card-price-${id}` }
             >
               {`R$ ${totalPrice}`.split('.').join(',')}
             </p>
@@ -46,7 +46,7 @@ function SaleCard({ order, role }) {
           { deliveryAddress && (
             <div
               className={ styles.address }
-              data-testid={ `${deliveryAddress.dataTestId}${id}` }
+              data-testid={ `seller_orders__element-card-address-${id}` }
             >
               <p>{deliveryAddress}</p>
             </div>

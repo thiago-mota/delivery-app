@@ -1,5 +1,6 @@
 import React from 'react';
 import SaleCard from '../../components/CardSales/Card';
+// import useFetch from '../../hooks/useFetch';
 import styles from './Sales.module.css';
 
 const order = {
@@ -12,17 +13,18 @@ const order = {
 
 const role = 'seller';
 
-// const VALID_TOKEN = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQ2xpZW50ZSB6aWthIiwi
-// ZW1haWwiOiJjbGllbnRlQGhvdG1haWwuY29tIiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNjc0NjgwNjUwLCJleH
-// AiOjE2NzY0MDg2NTB9.68xRy7oZC4RnwFBc0CSBxDBm3roI1h8l_OmAsckxxw4`;
+// const VALID_TOKEN = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRnVsYW5hIFBlcmVp
+// cmEiLCJlbWFpbCI6ImZ1bGFuYUBkZWxpdmVyeWF
+// wcC5jb20iLCJyb2xlIjoic2VsbGVyIiwiaWF0Ij
+// oxNjc0ODI3ODY0LCJleHAiOjE2NzY1NTU4NjR9.moe6aFh0F8AzDX5q7mlFeuIx8X5AQLLSAej03A99PEE`;
 
 // const FETCH_OPTIONS = {
 //   method: 'get',
-//   endpoint: 'http://localhost:3001/customer/checkout',
+//   endpoint: 'http://localhost:3001/checkout',
 //   options: { headers: { authorization: VALID_TOKEN } },
 // };
 
-function Pedidos() {
+function Sales() {
   // const [data, isLoading] = useFetch(FETCH_OPTIONS);
   // const datas = data?.data;
   return (
@@ -31,16 +33,21 @@ function Pedidos() {
 
       {/* {!isLoading
             && datas?.map((index) => (
-              <SaleCard order={ index } role={ index } key={ index.id } />
+              <div className={ styles.card } key={ index.id }>
+                <SaleCard order={ index } role={ index } />
+                {' '}
+              </div>
             ))} */}
 
-      <SaleCard
-        order={ order }
-        role={ role }
-      />
+      <div className={ styles.card }>
+        <SaleCard
+          order={ order }
+          role={ role }
+        />
+      </div>
 
     </div>
   );
 }
 
-export default Pedidos;
+export default Sales;
