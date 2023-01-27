@@ -39,7 +39,6 @@ function Login() {
       return push('/customer/products');
     }
   };
-
   const onSubmit = async (data) => {
     try {
       const {
@@ -51,6 +50,7 @@ function Login() {
       if (status !== SUCCESS) {
         throw new Error(response?.message);
       }
+      console.log(response);
       setLocalStorage('user', response);
       handleRedirect(response.role);
     } catch (error) {

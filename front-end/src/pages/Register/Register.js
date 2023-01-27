@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import { setLocalStorage } from '../../utils/localStorage';
 import styles from './Register.module.css';
 
 const STYLE_CLASSNAMES = {
@@ -33,13 +34,15 @@ function Register() {
     }
   };
 
-  const onSubmit = async (data) => {
-    console.log('data', data);
+  const onSubmit = async (formData) => {
     try {
-      const {
-        data: { token },
-      } = await axios.post('http://localhost:3001/users', data);
-      console.log(token);
+      const { data: { response: { token } } } = await axios.post(
+        'http://localhost:3001/users',
+        formData,
+      );
+      const { password: _password, ...rest } = formData;
+      const localStoragePayload = { ...rest, role: 'customer', token };
+      setLocalStorage('user', localStoragePayload);
       push('/customer/products');
     } catch (error) {
       handleError(error);

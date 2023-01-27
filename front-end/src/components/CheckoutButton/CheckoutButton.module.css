@@ -1,0 +1,14 @@
+.checkout {
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  position: sticky;
+  margin: auto;
+  width: 30rem;
+  bottom: 5vh;
+  height: 10rem;
+  border-radius: 5rem;
+  background-color: green;
+  border: 50%;
+  font-size: 2.5rem;
+}

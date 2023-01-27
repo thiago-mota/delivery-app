@@ -4,7 +4,7 @@ const { User } = require('../database/models/index');
 const ErrorGenerator = require('../utils/errorGenerator');
 
 const jwtConfig = {
-  expiresIn: '20D',
+  expiresIn: '20d',
   algorithm: 'HS256',
 };
 

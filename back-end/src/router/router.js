@@ -1,5 +1,5 @@
 const express = require('express');
-// const { authorizationToken } = require('../middlewares/authorizationToken');
+const { authorizationToken } = require('../middlewares/authorizationToken');
 const errorMiddleware = require('../middlewares/errorMiddleware');
 const routeLogin = require('./routerLogin');
 const routeUsers = require('./routerUser');
@@ -11,7 +11,7 @@ routers.use('/login', routeLogin);
 routers.use('/users', routeUsers);
 routers.use('/products', routeProducts);
 
-// routers.use(authorizationToken);
 routers.use(errorMiddleware);
+routers.use(authorizationToken);
 
 module.exports = routers;
