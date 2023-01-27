@@ -10,9 +10,9 @@ const routers = express.Router();
 
 routers.use('/login', routeLogin);
 routers.use('/users', routeUsers);
+routers.use(authorizationToken);
 routers.use('/products', routeProducts);
 
-routers.use(authorizationToken);
 routers.use('/customer/', routeCheckout);
 routers.use('/customer/products', routeProducts);
 
