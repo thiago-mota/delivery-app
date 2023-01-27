@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
 const { User } = require('../database/models/index');
+// const tokenGenerator = require('../middlewares/tokenGenerator');
 const ErrorGenerator = require('../utils/errorGenerator');
 
 const jwtConfig = {
@@ -38,6 +39,7 @@ const loginService = async ({ email, password }) => {
   const response = { 
     name: checkUser.name, email: checkUser.email, role: checkUser.role,
   };
+  
   const token = jwt.sign(response, secretKey, jwtConfig);
   return { ...response, token };
 };
