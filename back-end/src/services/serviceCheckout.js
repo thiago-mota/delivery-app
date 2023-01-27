@@ -36,6 +36,13 @@ const createSale = async (body, token) => {
   }
 };
 
+const getAllService = async () => {
+  const sales = await Sale.findAll();
+
+  return sales;
+};
+
 module.exports = {
   createSale,
+  getAllService,
 };

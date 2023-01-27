@@ -3,7 +3,8 @@ const controllerCheckout = require('../controllers/controllerCheckout');
 
 const routers = express.Router();
 
-routers.post('/checkout', controllerCheckout.requestId);
+routers.post('/customer/checkout', controllerCheckout.requestId);
+routers.get('/checkout', controllerCheckout.getAll);
 
 module.exports = routers;
 
