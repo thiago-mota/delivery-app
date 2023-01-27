@@ -13,7 +13,7 @@ routers.use('/users', routeUsers);
 routers.use('/products', routeProducts);
 
 routers.use(authorizationToken);
-routers.use('/customer/checkout', routeCheckout);
+routers.use('/customer/', routeCheckout);
 routers.use('/customer/products', routeProducts);
 
 module.exports = routers;
