@@ -12,7 +12,7 @@ const validateToken = (token) => {
 
 const authorizationToken = (req, res, next) => {
   const { authorization } = req.headers;
-  // console.log(authorization);
+  console.log(req.headers);
   const user = validateToken(authorization);
   req.user = user;
 
