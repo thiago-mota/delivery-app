@@ -71,5 +71,5 @@ module.exports = {
       },
     ], {}),
 
-  down: async (queryInterface) => queryInterface.bulkDelete('Products', null, {}),
+  down: async (queryInterface) => queryInterface.bulkDelete('products', null, {}),
 };
