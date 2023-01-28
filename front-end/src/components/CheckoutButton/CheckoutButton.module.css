@@ -1,31 +1,31 @@
 .checkout {
-  display: flex;
-  align-items:center;
-  justify-content: center;
-  position: sticky;
-  margin: auto;
-  width: 30rem;
-  bottom: 5vh;
-  height: 10rem;
-  border-radius: 5rem;
+  align-items: center;
   background-color: green;
   border: 50%;
+  border-radius: 5rem;
+  bottom: 5vh;
+  display: flex;
   font-size: 2.5rem;
+  height: 10rem;
+  justify-content: center;
+  margin: auto;
+  position: sticky;
+  width: 30rem;
 }
 
-.checkout:has(.navbutton:disabled) {
+.checkout:has( .navbutton:disabled ) {
   background-color: gray;
 }
 
 .navbutton {
-  color: white;
-  font-size: 2.5rem;
   background-color: green;
-  border: none; 
+  border: none;
+  color: white;
   cursor: pointer;
+  font-size: 2.5rem;
 }
 
 .navbutton:disabled {
-  cursor: default;
   background-color: gray;
+  cursor: default;
 }
