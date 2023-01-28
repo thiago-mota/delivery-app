@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
+const jwtKey = require('fs').readFileSync('jwt.evaluation.key', {
+  encoding: 'utf-8',
+});
 const { User } = require('../database/models/index');
 // const tokenGenerator = require('../middlewares/tokenGenerator');
 const ErrorGenerator = require('../utils/errorGenerator');
-const jwtKey = require("fs").readFileSync("jwt.evaluation.key", {
-  encoding: "utf-8",
-});
 
 const jwtConfig = {
   expiresIn: '20d',

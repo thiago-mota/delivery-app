@@ -11,7 +11,6 @@ const calculateTotalPrice = (cartProducts) => new Intl
     ),
   );
 
-
 function CheckoutButton() {
   const { push } = useHistory();
   const { cartProducts } = useSelector((state) => state.cart);
