@@ -1,8 +1,11 @@
 const jwt = require('jsonwebtoken');
 require('dotenv/config');
+const jwtKey = require("fs").readFileSync("jwt.evaluation.key", {
+  encoding: "utf-8",
+});
 
 const createToken = (data) => {
-  const token = jwt.sign({ data }, 'secret_key', {
+  const token = jwt.sign({ data }, jwtKey, {
     expiresIn: "99d",
     algorithm: "HS256",
   });
@@ -12,7 +15,7 @@ const createToken = (data) => {
 
 const validatedToken = (token) => {
   try {
-    const { data } = jwt.verify(token, 'secret_key');
+    const { data } = jwt.verify(token, jwtKey);
     console.log('verify', data);
     return data;
   } catch (_e) {
