@@ -2,7 +2,7 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('sale', {
+    await queryInterface.createTable('sales', {
       id: { 
         type: Sequelize.INTEGER,
         allowNull: false, 
@@ -17,7 +17,7 @@ module.exports = {
           key: 'id'
         }
       },
-      saller_id: {
+      seller_id: {
         type: Sequelize.INTEGER,
         allowNull: false, 
         references: {
@@ -26,7 +26,7 @@ module.exports = {
         }
       },
       total_price: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(4, 2),
         allowNull: false, 
       },
       delivery_address: {
@@ -40,7 +40,7 @@ module.exports = {
         type: Sequelize.DATE,
       },
       status: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       }
     })
   },

@@ -9,11 +9,12 @@ module.exports = (sequelize, DataTypes) => {
       saleDate: DataTypes.DATE,
       status: DataTypes.INTEGER,
     }, { underscored: true, tableName: 'sales', timestamps: false });
+
     Sale.associate = (models) => {
       Sale.belongsTo(models.User, {
-        foreignKey: 'userId', as: 'user' });
+        foreignKey: 'userId', as: 'user_id' });
       Sale.belongsTo(models.User, {
-        foreignKey: 'sallerId', as: 'saller' });
+        foreignKey: 'sallerId', as: 'saller_id' });
     };
   return Sale;
 };
