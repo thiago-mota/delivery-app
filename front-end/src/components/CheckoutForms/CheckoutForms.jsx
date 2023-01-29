@@ -12,6 +12,7 @@ function CheckoutForms() {
     formState: { isValid, errors },
   } = useForm({
     defaultValues: {
+      seller: '',
       address: '',
       number: '',
     },
@@ -29,20 +30,16 @@ function CheckoutForms() {
     <div>
       <h2>Detalhes e Endereço para Entrega</h2>
       <section>
-        <form onSubmit={ handleSubmit(onSubmit) }>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="text">
             Endereço
             <input
               type="text"
               id="text"
               data-testid="customer_checkout__input-address"
-              { ...register('address', {
-                required: 'Please put an email!',
-                pattern: {
-                  value: /^\S+@\S+\.\S+$/,
-                  message: 'Please enter a valid email!',
-                },
-              }) }
+              {...register('address', {
+                required: 'Endereço é obrigatório',
+              })}
             />
           </label>
           <label htmlFor="text">
@@ -51,22 +48,33 @@ function CheckoutForms() {
               type="text"
               id="text"
               data-testid="customer_checkout__input-address-number"
-              { ...register('number', {
+              {...register('number', {
                 required: 'Número é obrigatório',
                 pattern: {
                   value: /[0-9]/,
                   message: 'Coloque um número válido',
                 },
-              }) }
+              })}
             />
           </label>
           <button
             type="submit"
             data-testid="customer_checkout__button-submit-order"
-            disabled={ !isValid }
+            disabled={!isValid}
           >
             FINALIZAR PEDIDO
           </button>
+          <span>P.Vendedora Responsável:</span>
+          <select
+            { ...register('seller', { required: true }) }
+            data-testid="customer_checkout__select-seller"
+          >
+            <option value="">Selecione</option>
+            <option value="Fulano">Fulano</option>
+            <option value="Ciclano">Ciclano</option>
+            <option value="Beltrano">Beltrano</option>
+          </select>
+          ;
         </form>
       </section>
     </div>

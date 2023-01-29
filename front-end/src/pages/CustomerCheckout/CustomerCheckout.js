@@ -32,7 +32,9 @@ function CustomerCheckout() {
       <div>
         <h3>
           {'Total: R$ '}
-          <span>{totalPrice}</span>
+          <span data-testid="customer_checkout__element-order-total-price">
+            { totalPrice }
+          </span>
         </h3>
       </div>
       <CheckoutForms />

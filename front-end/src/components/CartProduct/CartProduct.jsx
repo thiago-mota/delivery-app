@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { removeItem } from '../../redux/actions/cartActions';
 
+const priceFormatter = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2 });
+
 function CartProduct({ product, index }) {
   const dispatch = useDispatch();
   const handleRemove = (productData) => {
@@ -14,7 +16,7 @@ function CartProduct({ product, index }) {
       <td
         data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
       >
-        {index}
+        {index + 1}
       </td>
       <td data-testid={ `customer_checkout__element-order-table-name-${index}` }>
         {product.name}
@@ -27,19 +29,21 @@ function CartProduct({ product, index }) {
       <td
         data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
       >
-        {product.price}
+        {priceFormatter.format(product.price)}
       </td>
       <td
         data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
       >
-        {(Number(product.price) * product.quantity).toFixed(2)}
+        { priceFormatter.format(Number(product.price) * product.quantity) }
       </td>
       <td
         data-testid={ `customer_checkout__element-order-table-remove-${index}` }
       >
         <button
           type="button"
-          onClick={ () => { handleRemove(product); } }
+          onClick={ () => {
+            handleRemove(product);
+          } }
         >
           Remover
         </button>
