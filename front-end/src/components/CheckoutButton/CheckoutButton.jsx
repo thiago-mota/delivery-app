@@ -1,15 +1,8 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import calculateTotalPrice from '../../utils/calculateTotalPrice';
 import styles from './CheckoutButton.module.css';
-
-const calculateTotalPrice = (cartProducts) => new Intl
-  .NumberFormat('pt-BR', { minimumFractionDigits: 2 }).format(
-    cartProducts.reduce(
-      (sum, cartProduct) => sum + parseFloat(cartProduct.price) * cartProduct.quantity,
-      0,
-    ),
-  );
 
 function CheckoutButton() {
   const { push } = useHistory();

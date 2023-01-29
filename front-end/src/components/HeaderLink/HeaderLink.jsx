@@ -5,16 +5,16 @@ import styles from './HeaderLink.module.css';
 function HeaderLink() {
   return (
     <Switch>
-      <Route path="/customer/products">
+      <Route path="/customer/">
         <NavLink
-          to="/customer/checkout"
+          to="/customer/products"
           data-testid="customer_products__element-navbar-link-products"
           className={ styles.links }
         >
           Produtos
         </NavLink>
       </Route>
-      <Route path="/seller/orders">
+      <Route exact path="/seller/orders">
         <NavLink
           to="/seller/orders"
           data-testid="customer_products__element-navbar-link-orders"
@@ -23,7 +23,7 @@ function HeaderLink() {
           Produtos
         </NavLink>
       </Route>
-      <Route path="/admin/manage" />
+      <Route exact path="/admin/manage" />
       <Route>
         <NavLink
           to="/admin/manage"

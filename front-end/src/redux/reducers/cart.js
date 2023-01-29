@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, SET_TO_CART } from '../actions';
+import { ADD_TO_CART, REMOVE_FROM_CART, REMOVE_ITEM, SET_TO_CART } from '../actions';
 
 const INITIAL_STATE = {
   cartProducts: [],
@@ -67,6 +67,7 @@ const handleSetToCart = (state, action) => {
 };
 
 const cart = (state = INITIAL_STATE, action) => {
+  console.log(action);
   switch (action.type) {
   case ADD_TO_CART:
     return handleAddToCart(state, action);
@@ -74,6 +75,9 @@ const cart = (state = INITIAL_STATE, action) => {
     return handleRemoveFromCart(state, action);
   case SET_TO_CART:
     return handleSetToCart(state, action);
+  case REMOVE_ITEM:
+    return { cartProducts: state.cartProducts
+      .filter((cartItem) => cartItem.id !== action.productId) }
   default:
     return state;
   }
