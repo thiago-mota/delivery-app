@@ -2,10 +2,10 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('sales', {
-      id: { 
+    await queryInterface.createTable("sales", {
+      id: {
         type: Sequelize.INTEGER,
-        allowNull: false, 
+        allowNull: false,
         primaryKey: true,
         autoIncrement: true,
       },
@@ -13,36 +13,37 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'users',
-          key: 'id'
-        }
+          model: "users",
+          key: "id",
+        },
       },
       seller_id: {
         type: Sequelize.INTEGER,
-        allowNull: false, 
+        allowNull: false,
         references: {
-          model: 'users',
-          key: 'id'
-        }
+          model: "users",
+          key: "id",
+        },
       },
       total_price: {
-        type: Sequelize.DECIMAL(4, 2),
-        allowNull: false, 
+        type: Sequelize.DECIMAL(9, 2),
+        allowNull: false,
       },
       delivery_address: {
         allowNull: false,
         type: Sequelize.STRING,
       },
       delivery_number: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       sale_date: {
         type: Sequelize.DATE,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
       status: {
-        type: Sequelize.STRING
-      }
-    })
+        type: Sequelize.STRING,
+      },
+    });
   },
 
   async down (queryInterface, Sequelize) {

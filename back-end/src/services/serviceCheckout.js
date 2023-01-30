@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { Sale, SalesProduct } = require('../database/models');
+const { Sale, SalesProduct, User } = require('../database/models');
 
 const decodeToken = async (token) => {
   const decodedToken = jwt.decode(token);
@@ -7,10 +7,9 @@ const decodeToken = async (token) => {
 };
 
 const createSaleProducts = async (products, saleId) => {
-  console.log(products);
   Promise.all(
-    products.map(async ({ productId, quantity }) => {
-      await SalesProduct.create({ saleId, productId, quantity });
+    products.map(async ({ id, quantity }) => {
+      await SalesProduct.create({ saleId, productId: id, quantity });
     }),
   );
 };
@@ -18,17 +17,17 @@ const createSaleProducts = async (products, saleId) => {
 const createSale = async (body, token) => {
   try {
     const decode = await decodeToken(token);
-    const { status, products, sellerId, totalPrice, deliveryAddress, deliveryNumber } = body;
+    const { products, ...rest } = body;
     const date = new Date();
-    const statusMessage = status || 'Pendente';
+    const statusMessage = rest.status || 'Pendente';
+    const { dataValues: { id: userId } } = await User
+      .findOne({ where: { name: decode.name } });
     const data = await Sale.create({
-      userId: decode.userId,
-      sellerId,
-      totalPrice,
-      deliveryAddress,
-      deliveryNumber,
+      ...rest,
       saleDate: date,
-      status: statusMessage });
+      status: statusMessage,
+      userId,
+    });
     await createSaleProducts(products, data.id);
     return { data };
   } catch (err) {

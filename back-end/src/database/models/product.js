@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
       id: { autoIncrement: true, primaryKey: true, type: DataTypes.INTEGER,
       },
       name: DataTypes.STRING,
-      price: DataTypes.DECIMAL(4, 2),
+      price: DataTypes.DECIMAL(4,2),
       urlImage: DataTypes.STRING,
     }, {
       underscored: true,
@@ -12,9 +12,6 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     },
 );
-    // Product.associate = (models) => {
-    //   Product.hasMany(models.saleProducts, {
-    //     foreignKey: 'id', as: 'id' });
-    // };
+  
   return Product;
 };

@@ -5,6 +5,9 @@ const requestId = async (req, res, next) => {
     const token = req.headers.authorization;
     const data = await serviceCheckout.createSale(req.body, token);
     return res.status(201).json({ message: 'created', response: data });
+    // const body = req.body;
+    // console.log(body);
+    // return res.status(201).json({ body });
   } catch (err) {
     console.log(err);
     next(err);
