@@ -14,6 +14,7 @@ const SUCCESS = 200;
 
 function Login() {
   const [isError, setIsError] = useState([]);
+  console.log(isError);
   const { push } = useHistory();
   const {
     register,
@@ -40,20 +41,23 @@ function Login() {
   };
   const onSubmit = async (data) => {
     try {
+      console.log('test');
       const {
         data: { response },
         status,
       } = await axios.post('http://localhost:3001/login', data, {
         port: BACKEND_PORT,
       });
+
       if (status !== SUCCESS) {
         console.log(response.message, 'aaaaa');
         throw new Error(response?.message);
       }
+      console.log(status, 'status');
       setLocalStorage('user', response);
       handleRedirect(response.role);
     } catch (error) {
-      console.log(errors, error);
+      console.log(isError);
       const errorMessage = error?.response?.data?.message || error.message;
       setIsError([errorMessage]);
     }
