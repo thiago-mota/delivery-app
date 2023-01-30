@@ -113,14 +113,15 @@ function AdminRegister() {
         <label htmlFor="role" className={ styles[STYLE_CLASSNAMES.FORM_LABEL] }>
           Role
           <select
+            defaultValue="customer"
             type="role"
             id="role"
             data-testid="admin_manage__select-role"
             { ...register('role') }
           >
-            <option selected="selected">customer</option>
-            <option>seller</option>
-            <option>administrator</option>
+            <option value="customer">customer</option>
+            <option value="seller">seller</option>
+            <option value="administrator">administrator</option>
           </select>
           {errors?.role && <p>{errors.role.message}</p>}
         </label>

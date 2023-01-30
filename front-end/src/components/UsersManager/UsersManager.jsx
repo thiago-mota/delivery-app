@@ -5,18 +5,22 @@ import { getLocalStorage } from '../../utils/localStorage';
 import styles from './UsersManager.module.css';
 
 function UsersManager() {
-  const handleClick = ((userId, token) => {
-    axios.delete(`http://localhost:3000/users/${userId}`, {
-      headers: {
-        Authorization: { token },
-      },
-    });
-    // .then((response) => {
-    //   console.log(response.data);
-    // })
-    // .catch((error) => {
-    //   console.error(error);
-    // });
+  const handleClick = (async (userId) => {
+    try {
+      const config = {
+        headers: {
+          Authorization: getLocalStorage('user')?.token,
+        },
+      };
+
+      const body = { id: userId };
+
+      const res = await axios.delete('http://localhost:3001/users', { data: body }, config);
+
+      return res.data;
+    } catch (error) {
+      console.error(error);
+    }
   });
 
   const fetchOptions = useMemo(() => ({
@@ -73,16 +77,18 @@ function UsersManager() {
                       {index.role}
                     </td>
 
-                    <button
-                      onClick={ (() => {
-                        handleClick(index.id, getLocalStorage('user')?.token);
-                      }) }
-                      type="button"
-                      data-testid={ `admin_manage
+                    <td>
+                      <button
+                        onClick={ (() => {
+                          handleClick(index.id);
+                        }) }
+                        type="button"
+                        data-testid={ `admin_manage
                     __element-user-table-remove-${index.id}` }
-                    >
-                      Excluir
-                    </button>
+                      >
+                        Excluir
+                      </button>
+                    </td>
 
                   </tr>
                 </tbody>
