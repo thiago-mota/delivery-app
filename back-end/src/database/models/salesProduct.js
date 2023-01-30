@@ -8,23 +8,24 @@ module.exports = (sequelize, DataTypes) => {
       },
       productId: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
       },
       quantity: {
         type: DataTypes.INTEGER,
       },
     }, {
       underscored: true,
-      tableName: 'salesProducts',
+      tableName: 'sales_products',
       timestamps: false,
     },
 );
-    salesProduct.associate = (models) => {
+  salesProduct.associate = (models) => {
       models.Sale.belongsToMany(models.Product, {
-        foreignKey: 'saleId', otherKey: 'productId' , as: 'sales', through: salesProduct });
-        models.Product.belongsToMany(models.Sale, {
-        foreignKey: 'productId', otherKey: 'saleId' , as: 'products', through: salesProduct
-      })
-    };
+        foreignKey: 'saleId', otherKey: 'productId' , as: 'sales', through: salesProduct,
+      });
+      models.Product.belongsToMany(models.Sale, {
+      foreignKey: 'productId', otherKey: 'saleId' , as: 'products', through: salesProduct,
+    })
+  };
   return salesProduct;
 };
-

@@ -1,15 +1,18 @@
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
+const jwtKey = require('fs').readFileSync('jwt.evaluation.key', {
+  encoding: 'utf-8',
+});
 const { User } = require('../database/models/index');
 // const tokenGenerator = require('../middlewares/tokenGenerator');
 const ErrorGenerator = require('../utils/errorGenerator');
 
 const jwtConfig = {
-  expiresIn: '20D',
+  expiresIn: '20d',
   algorithm: 'HS256',
 };
 
-const secretKey = 'secret_key';
+const secretKey = jwtKey;
 
 const existenceUser = async ({ email, password }) => User.findOne({
   where: { email, password },

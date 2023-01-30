@@ -1,25 +1,46 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import styles from './QuantityControl.module.css';
+import { addToCart, removeFromCart, setToCart } from '../../redux/actions/cartActions';
 
-function QuantityControl({ id }) {
+function QuantityControl({ id, productData }) {
   const [quantity, setQuantity] = useState(0);
+  const dispatch = useDispatch();
 
   const handleIncrement = () => {
+    const payload = { ...productData, quantity: quantity + 1 };
+    dispatch(addToCart(payload));
     setQuantity((prevState) => prevState + 1);
   };
 
+  const handleDispatchDecrement = () => {
+    if (quantity) {
+      const payload = { ...productData, quantity: quantity + 1 };
+      dispatch(removeFromCart(payload));
+    }
+  };
+
   const handleDecrement = () => {
+    handleDispatchDecrement();
     setQuantity((prevState) => (prevState ? prevState - 1 : 0));
   };
 
+  const handleQuantityValidation = (value) => {
+    if (!value) {
+      return 0;
+    }
+    if (value <= 0) {
+      return 0;
+    }
+    return +value || quantity;
+  };
+
   const handleQuantity = ({ target: { value } }) => {
-    setQuantity(() => {
-      if (value < 0) {
-        return 0;
-      }
-      return +value;
-    });
+    const nextQuantity = handleQuantityValidation(value);
+    const payload = { ...productData, quantity: nextQuantity };
+    dispatch(setToCart(payload));
+    setQuantity(nextQuantity);
   };
 
   return (
@@ -54,6 +75,12 @@ function QuantityControl({ id }) {
 
 QuantityControl.propTypes = {
   id: PropTypes.number.isRequired,
+  productData: PropTypes.shape({
+    urlImage: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default QuantityControl;

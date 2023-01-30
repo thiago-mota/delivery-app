@@ -1,0 +1,13 @@
+.links {
+  align-items: center;
+  all: unset;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 3rem;
+  font-weight: 500;
+  justify-content: center;
+  text-align: center;
+  width: 50%;
+}

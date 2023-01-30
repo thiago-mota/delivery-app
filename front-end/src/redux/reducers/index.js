@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import login from './login';
+import cart from './cart';
 
-const rootReducer = combineReducers({ login });
+const rootReducer = combineReducers({ cart });
 
 export default rootReducer;

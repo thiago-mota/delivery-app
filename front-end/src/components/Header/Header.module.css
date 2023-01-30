@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.margin-container {
+  background-color: mediumseagreen;
+  display: flex;
+  height: max(10rem, 10vh);
+  justify-content: space-between;
+  max-width: 160rem;
+  width: 100%;
+}
+
+.common-links-container {
+  background-color: aqua;
+  display: flex;
+  justify-content: flex-start;
+  width: 30%;
+}
+
+.role-links-container {
+  align-items: center;
+  background-color: brown;
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+}
+
+.product-orders {
+  align-items: center;
+  all: unset;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 3rem;
+  font-weight: 500;
+  justify-content: center;
+  width: 50%;
+}
+
+.user-name {
+  color: white;
+  font-size: 3rem;
+  font-weight: 500;
+  text-align: center;
+  width: 50%;
+}
+
+.logout {
+  align-items: center;
+  all: unset;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 3rem;
+  font-weight: 500;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+  width: 50%;
+}

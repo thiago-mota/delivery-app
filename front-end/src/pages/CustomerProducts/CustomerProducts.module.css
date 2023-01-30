@@ -1,5 +1,11 @@
-.container {
+.page-container {
+  background-color: var(--bg-light);
   height: fit-content;
+  min-height: 90vh;
+  width: 100%;
+}
+
+.container {
   margin: auto;
   max-width: 120rem;
   padding: 2rem;
@@ -9,4 +15,8 @@
   display: grid;
   gap: 2rem;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.background {
+  color: var(--bg-light);
 }

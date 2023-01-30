@@ -1,0 +1,45 @@
+import React, { useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import CartProduct from '../../components/CartProduct/CartProduct';
+import CheckoutForms from '../../components/CheckoutForms/CheckoutForms';
+import Header from '../../components/Header/Header';
+import calculateTotalPrice from '../../utils/calculateTotalPrice';
+
+function CustomerCheckout() {
+  const { cartProducts } = useSelector((store) => store.cart);
+  const totalPrice = useMemo(() => calculateTotalPrice(cartProducts), [cartProducts]);
+  return (
+    <div>
+      <Header />
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Valor Unitário</th>
+            <th>Sub-total</th>
+            <th>Remover Item</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cartProducts.map((product, index) => (
+            <CartProduct product={ product } index={ index } key={ product.id } />
+          ))}
+        </tbody>
+      </table>
+      <div>
+        <h3>
+          {'Total: R$ '}
+          <span data-testid="customer_checkout__element-order-total-price">
+            {totalPrice}
+          </span>
+        </h3>
+      </div>
+      <CheckoutForms totalPrice={ totalPrice } products={ cartProducts } />
+      <section />
+    </div>
+  );
+}
+
+export default CustomerCheckout;

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import SaleCard from '../../components/CardSales/Card';
+import Header from '../../components/Header/Header';
 import useFetch from '../../hooks/useFetch';
 import styles from './Sales.module.css';
 
@@ -37,6 +38,7 @@ function Sales() {
   return (
 
     <div className={ styles['pedidos-page'] }>
+      <Header />
       <h1>Pedidos</h1>
 
       {!isLoading

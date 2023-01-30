@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import styles from './Login.module.css';
+import { setLocalStorage } from '../../utils/localStorage';
 
 const STYLE_CLASSNAMES = {
   FORM_VALIDATION: 'form-validation',
@@ -38,9 +39,7 @@ function Login() {
       return push('/customer/products');
     }
   };
-
   const onSubmit = async (data) => {
-    console.log(errors);
     try {
       const {
         data: { response },
@@ -51,10 +50,10 @@ function Login() {
       if (status !== SUCCESS) {
         throw new Error(response?.message);
       }
-      console.log(response);
+      setLocalStorage('user', response);
       handleRedirect(response.role);
     } catch (error) {
-      console.log(error);
+      console.log(errors, error);
       const errorMessage = error?.response?.data?.message || error.message;
       setIsError([errorMessage]);
     }
