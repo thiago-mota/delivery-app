@@ -3,7 +3,6 @@ export const createLocalStorage = (key) => {
 };
 
 export const getLocalStorage = (key) => {
-  console.log('teste');
   const stringfiedData = localStorage.getItem(key);
   if (!stringfiedData) { return null; }
   const data = JSON.parse(stringfiedData);

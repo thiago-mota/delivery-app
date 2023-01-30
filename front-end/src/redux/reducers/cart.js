@@ -77,7 +77,7 @@ const cart = (state = INITIAL_STATE, action) => {
     return handleSetToCart(state, action);
   case REMOVE_ITEM:
     return { cartProducts: state.cartProducts
-      .filter((cartItem) => cartItem.id !== action.productId) }
+      .filter((cartItem) => cartItem.id !== action.productId) };
   default:
     return state;
   }

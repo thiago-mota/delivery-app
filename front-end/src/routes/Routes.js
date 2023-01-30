@@ -11,9 +11,18 @@ import Sales from '../pages/Sales/Sales';
 function Routes() {
   return (
     <Switch>
-      <Route path="/customer/products"><CustomerProducts /></Route>
-      <Route path="/customer/checkout"><CustomerCheckout /></Route>
-      <Route path="/admin/manage"><Header /></Route>
+      <Route path="/customer/orders/:id">
+        <CustomerCheckout />
+      </Route>
+      <Route path="/customer/products">
+        <CustomerProducts />
+      </Route>
+      <Route path="/customer/checkout">
+        <CustomerCheckout />
+      </Route>
+      <Route path="/admin/manage">
+        <Header />
+      </Route>
       <Route path="/seller/orders" component={ Sales } />
       <Route path="/register" component={ Register } />
       <Route path="/login" component={ Login } />

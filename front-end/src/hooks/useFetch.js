@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 const useFetch = (options) => {
   const [requestState, setRequestState] = useState({
     data: [],
-    isError: null,
     isLoading: true,
+    isError: null,
   });
   useEffect(() => {
     const fetchData = async () => {

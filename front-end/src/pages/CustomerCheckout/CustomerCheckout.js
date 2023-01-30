@@ -8,7 +8,6 @@ import calculateTotalPrice from '../../utils/calculateTotalPrice';
 function CustomerCheckout() {
   const { cartProducts } = useSelector((store) => store.cart);
   const totalPrice = useMemo(() => calculateTotalPrice(cartProducts), [cartProducts]);
-  console.log(totalPrice);
   return (
     <div>
       <Header />
@@ -33,11 +32,11 @@ function CustomerCheckout() {
         <h3>
           {'Total: R$ '}
           <span data-testid="customer_checkout__element-order-total-price">
-            { totalPrice }
+            {totalPrice}
           </span>
         </h3>
       </div>
-      <CheckoutForms />
+      <CheckoutForms totalPrice={ totalPrice } products={ cartProducts } />
       <section />
     </div>
   );
