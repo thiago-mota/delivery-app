@@ -28,7 +28,6 @@ function Login() {
     criteriaMode: 'all',
     mode: 'onChange',
   });
-
   const handleRedirect = (role) => {
     switch (role) {
     case 'administrator':
@@ -48,6 +47,7 @@ function Login() {
         port: BACKEND_PORT,
       });
       if (status !== SUCCESS) {
+        console.log(response.message, 'aaaaa');
         throw new Error(response?.message);
       }
       setLocalStorage('user', response);
