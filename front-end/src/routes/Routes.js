@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import Header from '../components/Header/Header';
+import AdminManager from '../pages/AdminManager/AdminManeger';
 import CustomerCheckout from '../pages/CustomerCheckout/CustomerCheckout';
 import CustomerProducts from '../pages/CustomerProducts/CustomerProducts';
 import Login from '../pages/Login/Login';
@@ -21,7 +21,7 @@ function Routes() {
         <CustomerCheckout />
       </Route>
       <Route path="/admin/manage">
-        <Header />
+        <AdminManager />
       </Route>
       <Route path="/seller/orders" component={ Sales } />
       <Route path="/register" component={ Register } />
