@@ -136,7 +136,7 @@ function AdminRegister() {
             && isError.map((errorMessage) => (
               <p
                 key="errorMessage"
-                data-testid="admin_manage__element-invalid_register"
+                data-testid="admin_manage__element-invalid-register"
               >
                 {errorMessage}
               </p>
