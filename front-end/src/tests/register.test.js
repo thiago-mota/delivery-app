@@ -91,7 +91,7 @@ describe('testing in register', () => {
   test('testing in error register', async () => {
     axios.post.mockResolvedValue(mockErrorRegister);
 
-    const { getByTestId, history } = renderWithRouterAndRedux(
+    const { getByTestId } = renderWithRouterAndRedux(
       <Register />,
     );
     // history.location.pathname('/register');
