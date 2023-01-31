@@ -1,14 +1,13 @@
-import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
-import SaleCard from '../../components/CardSales/Card';
+import CardSales from '../../components/CardSales/CardSales';
 import Header from '../../components/Header/Header';
 import useFetch from '../../hooks/useFetch';
 import { getLocalStorage } from '../../utils/localStorage';
-import styles from './Sales.module.css';
+import styles from './Customer.module.css';
 
-const role = 'seller';
+const role = 'customer';
 
-function Sales() {
+function CustomerOrders() {
   const fetchOptions = useMemo(() => ({
     method: 'get',
     url: 'http://localhost:3001/checkout',
@@ -18,14 +17,14 @@ function Sales() {
   const [data, isLoading] = useFetch(fetchOptions);
   const datas = data?.data;
   return (
-    <div className={ styles['pedidos-page'] }>
+    <div className={ styles['orders-page'] }>
       <Header />
-      <div className={ styles['pedidos-container'] }>
+      <div className={ styles.container }>
 
         {!isLoading
             && datas?.map((index) => (
               <div className={ styles.card } key={ index.id }>
-                <SaleCard order={ index } role={ role } />
+                <CardSales order={ index } role={ role } dataTestid={ role } />
                 {' '}
               </div>
             ))}
@@ -34,15 +33,4 @@ function Sales() {
   );
 }
 
-SaleCard.propTypes = {
-  order: PropTypes.shape({
-    id: PropTypes.number,
-    status: PropTypes.string,
-    saleDate: PropTypes.instanceOf(),
-    totalPrice: PropTypes.string,
-    deliveryAddress: PropTypes.string,
-  }).isRequired,
-  role: PropTypes.string.isRequired,
-};
-
-export default Sales;
+export default CustomerOrders;

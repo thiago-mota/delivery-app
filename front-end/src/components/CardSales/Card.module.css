@@ -18,6 +18,11 @@
   font-size: 1.5rem;
 }
 
+.container h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
 .id {
   align-items: center;
   background-color: var(--secondary);
