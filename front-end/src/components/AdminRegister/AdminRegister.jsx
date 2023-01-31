@@ -47,7 +47,7 @@ function AdminRegister() {
 
   return (
     <main className={ styles['register-container'] }>
-      Cadastrar novo usuário
+      <h1>Cadastrar novo usuário</h1>
       <form
         onSubmit={ handleSubmit(onSubmit) }
         className={ styles['form-container'] }
@@ -55,6 +55,7 @@ function AdminRegister() {
         <label htmlFor="name" className={ styles[STYLE_CLASSNAMES.FORM_LABEL] }>
           Nome
           <input
+            className={ styles.inputs }
             type="name"
             id="name"
             data-testid="admin_manage__input-name"
@@ -75,6 +76,7 @@ function AdminRegister() {
         >
           Email
           <input
+            className={ styles.inputs }
             type="email"
             id="email"
             data-testid="admin_manage__input-email"
@@ -95,6 +97,7 @@ function AdminRegister() {
         >
           Password
           <input
+            className={ styles.inputs }
             type="password"
             id="password"
             data-testid="admin_manage__input-password"
@@ -113,6 +116,7 @@ function AdminRegister() {
         <label htmlFor="role" className={ styles[STYLE_CLASSNAMES.FORM_LABEL] }>
           Role
           <select
+            className={ styles.inputs }
             defaultValue="customer"
             type="role"
             id="role"
@@ -127,6 +131,7 @@ function AdminRegister() {
         </label>
 
         <button
+          className={ styles.button }
           type="submit"
           data-testid="admin_manage__button-register"
           disabled={ !isValid }
