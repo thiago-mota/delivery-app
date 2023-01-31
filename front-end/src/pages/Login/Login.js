@@ -41,23 +41,19 @@ function Login() {
   };
   const onSubmit = async (data) => {
     try {
-      console.log('test');
       const {
         data: { response },
         status,
       } = await axios.post('http://localhost:3001/login', data, {
         port: BACKEND_PORT,
       });
-
       if (status !== SUCCESS) {
-        console.log(response.message, 'aaaaa');
         throw new Error(response?.message);
       }
-      console.log(status, 'status');
       setLocalStorage('user', response);
       handleRedirect(response.role);
     } catch (error) {
-      console.log(isError);
+      console.log(error);
       const errorMessage = error?.response?.data?.message || error.message;
       setIsError([errorMessage]);
     }

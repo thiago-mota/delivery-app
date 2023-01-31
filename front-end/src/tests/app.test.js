@@ -1,16 +1,11 @@
 import React from 'react';
-import { waitFor, act, fireEvent } from '@testing-library/react';
+import { waitFor, act, fireEvent, screen } from '@testing-library/react';
 import * as axios from 'axios';
 // import isBadRequest from './utils/request';
 import renderWithRouterAndRedux from './utils/renderWithRouter';
 import App from '../App';
 // import Login from '../pages/Login/Login';
 
-// beforeEach(() => {
-//   jest.spyOn(global, 'fetch').mockImplementationOnce(() => Promise.resolve({
-//     json: () => Promise.resolve(),
-//   }));
-// });
 afterEach(() => {
   jest.resetAllMocks();
 });
@@ -21,7 +16,6 @@ const buttonLoginID = 'common_login__button-login';
 const cliente = 'cliente@hotmail.com';
 const adm = 'adm@hotmail.com';
 const vendedor = 'vendedor@hotmail.com';
-const buttonForRedirectID = 'common_login__button-register';
 const testClient = {
   email: cliente,
   name: 'ClienteZika',
@@ -41,6 +35,17 @@ const testSeller = {
   name: 'Vendedor zika',
   role: 'seller',
   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVmVuZGVkb3IgemlrYSIsImVtYWlsIjoidmVuZGVkb3JAaG90bWFpbC5jb20iLCJyb2xlIjoic2VsbGVyIiwiaWF0IjoxNjc1MTA5NDE2LCJleHAiOjE2NzY4Mzc0MTZ9.j42JBCP34COq4yh-aRfu1FotCnKRYob8M_kx8obP8hk',
+};
+
+const mockRegister = {
+  data: {
+    response: {
+      email: 'emailinvalido@gmail.com',
+      role: 'customer',
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwibmFtZSI6IlBhdWxvIFJ1YmlvIFRlc3QiLCJlbWFpbCI6InRyeWJlckB0ZXN0ZS5jb20iLCJwYXNzd29yZCI6ImY1YmIwYzhkZTE0NmM2N2I0NGJhYmJmNGU2NTg0Y2MwIiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNjc1MTg4MTA5LCJleHAiOjE2NzY5MTYxMDl9.fwL6J2jBDimRoaD7dEmPZbvasW_4eHiRO7-yE7LfR2s',
+    },
+  },
+  status: 404,
 };
 
 describe('Testes na Pagina Inicial de Login', () => {
@@ -162,5 +167,25 @@ describe('Testes na Pagina Inicial de Login', () => {
       );
       expect(history.location.pathname).toBe('/register');
     });
+  });
+  test('testing in error', async () => {
+    jest.spyOn(axios, 'post').mockRejectedValue(mockRegister);
+    const { getByTestId, getByRole } = renderWithRouterAndRedux(<App />);
+    const invalidMessage = 'Request failed with status code 404';
+    await act(async () => {
+      fireEvent.change(
+        getByTestId(emailInputID),
+        { target: { value: 'test@test.test' } },
+      );
+      fireEvent.change(
+        getByTestId(SenhaInputID),
+        { target: { value: '1234567Cb' } },
+      );
+    });
+    fireEvent.click(
+      getByRole('button', { name: /LOGIN/i }),
+    );
+    const invalid = await screen.findByText(invalidMessage);
+    expect(invalid).toBeInTheDocument();
   });
 });
