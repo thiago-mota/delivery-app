@@ -24,4 +24,15 @@ const getAll = async (_req, res) => {
   }
 };
 
-module.exports = { requestId, getAll };
+const getOne = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const sales = await serviceCheckout.getOneService(id);
+    return res.status(200).json(sales);
+  } catch (e) {
+    console.log(e.message);
+    res.status(500).json({ message: 'Ocorreu um erro' });
+  }
+};
+
+module.exports = { requestId, getAll, getOne };

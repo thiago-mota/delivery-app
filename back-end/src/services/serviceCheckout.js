@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const { Sale, SalesProduct, User } = require('../database/models');
+const jwt = require("jsonwebtoken");
+const { Sale, SalesProduct, User, Product } = require("../database/models");
 
 const decodeToken = async (token) => {
   const decodedToken = jwt.decode(token);
@@ -10,7 +10,7 @@ const createSaleProducts = async (products, saleId) => {
   Promise.all(
     products.map(async ({ id, quantity }) => {
       await SalesProduct.create({ saleId, productId: id, quantity });
-    }),
+    })
   );
 };
 
@@ -19,9 +19,10 @@ const createSale = async (body, token) => {
     const decode = await decodeToken(token);
     const { products, ...rest } = body;
     const date = new Date();
-    const statusMessage = rest.status || 'Pendente';
-    const { dataValues: { id: userId } } = await User
-      .findOne({ where: { name: decode.name } });
+    const statusMessage = rest.status || "Pendente";
+    const {
+      dataValues: { id: userId },
+    } = await User.findOne({ where: { name: decode.name } });
     const data = await Sale.create({
       ...rest,
       saleDate: date,
@@ -40,8 +41,20 @@ const getAllService = async () => {
 
   return sales;
 };
+const getOneService = async (id) => {
+  const sales = await SalesProduct.findAll({
+    where: { saleId: id },
+    include: [
+      { model: Product, as: "products" },
+      { model: Sale, as: "sales" },
+    ],
+  });
+  console.log(sales, "service");
+  return sales;
+};
 
 module.exports = {
   createSale,
   getAllService,
+  getOneService,
 };

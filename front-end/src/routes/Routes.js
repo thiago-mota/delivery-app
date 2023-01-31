@@ -4,6 +4,7 @@ import Header from '../components/Header/Header';
 import CustomerCheckout from '../pages/CustomerCheckout/CustomerCheckout';
 import CustomerProducts from '../pages/CustomerProducts/CustomerProducts';
 import Login from '../pages/Login/Login';
+import OrderDetail from '../pages/OrderDetail/OrderDetail';
 import Register from '../pages/Register/Register';
 // import withAuth from './auth/withAuth';
 import Sales from '../pages/Sales/Sales';
@@ -12,7 +13,7 @@ function Routes() {
   return (
     <Switch>
       <Route path="/customer/orders/:id">
-        <CustomerCheckout />
+        <OrderDetail />
       </Route>
       <Route path="/customer/products">
         <CustomerProducts />
