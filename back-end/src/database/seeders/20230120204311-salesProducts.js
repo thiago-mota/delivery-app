@@ -9,14 +9,9 @@ module.exports = {
         quantity: 10,
       },
       {
-        sale_id: 2,
+        sale_id: 1,
         product_id: 2,
-        quantity: 20,
-      },
-      {
-        sale_id: 3,
-        product_id: 3,
-        quantity: 30,
+        quantity: 10,
       }
     ], {}),
 
