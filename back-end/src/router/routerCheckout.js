@@ -5,6 +5,7 @@ const routers = express.Router();
 
 routers.post('/customer/checkout', controllerCheckout.requestId);
 routers.get('/checkout', controllerCheckout.getAll);
+routers.put('/checkout/:id', controllerCheckout.updateStatus);
 
 module.exports = routers;
 

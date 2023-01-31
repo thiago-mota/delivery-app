@@ -41,7 +41,18 @@ const getAllService = async () => {
   return sales;
 };
 
+const updateStatusService = async (id, status) => {
+  try {
+    const sale = await Sale.findByPk(id);
+    await sale.update({ status }, { where: { id } });
+    return sale;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 module.exports = {
   createSale,
   getAllService,
+  updateStatusService,
 };
