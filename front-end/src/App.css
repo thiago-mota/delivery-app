@@ -9,11 +9,23 @@
 
   --secondary: white;
 
+  --gray: gray;
+
   --bg-dark: #b3ada7;
 
-  --bg-light: #f8efe6;
+  --bg-light: #e0e0e0;
 
   --grenn-status: #ccb800;
+
+  --light-grenn: #2FC18C;
+
+  --dark-grenn: #036B52;
+
+  --purple: #421981;
+
+  --light-blue: #056CF9;
+
+  --data-value: #f2fffcbf;
 
   --title-font: 'Montserrat' , sans-serif;
 }
@@ -28,4 +40,6 @@ html {
   /* css resetter */
   margin: 0;
   padding: 0;
+  transition: 400ms;
+  transform: 400ms;
 }

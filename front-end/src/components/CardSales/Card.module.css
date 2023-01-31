@@ -1,11 +1,12 @@
 .link-card {
-  color: black;
+  color: var(--primary);
   text-decoration: none;
 }
 
 .container {
   background-color: var(--bg-light);
   border-radius: 1rem;
+  box-shadow: 20px 20px 60px #bebebe , -20px -20px 60px var(--secondary);
   display: flex;
   max-height: 12rem;
   max-width: 45rem;
@@ -51,7 +52,7 @@
 
 .date-value {
   align-items: center;
-  background-color: var(--secondary);
+  background-color: var(--data-value);
   border-radius: 1rem;
   display: flex;
   height: 3rem;
