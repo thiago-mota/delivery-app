@@ -24,10 +24,6 @@ const getAll = async (_req, res) => {
   }
 };
 
-<<<<<<< HEAD
-
-module.exports = { requestId, getAll };
-=======
 const updateStatus = async (req, res) => {
   try { 
     const { id } = req.params;
@@ -43,4 +39,3 @@ const updateStatus = async (req, res) => {
 };
 
 module.exports = { requestId, getAll, updateStatus };
->>>>>>> 2b40d35f0a9d7965ba28c154d5ed834773ebc685
