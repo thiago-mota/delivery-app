@@ -13,6 +13,7 @@ const fetchOptions = {
 };
 
 function CheckoutForms({ totalPrice, products }) {
+  console.log(products);
   const { push } = useHistory();
   const {
     register,
@@ -30,15 +31,13 @@ function CheckoutForms({ totalPrice, products }) {
   });
 
   const [userData, isLoading] = useFetch(fetchOptions);
-  const sellers = useMemo(
-    () => {
-      const sellerData = isLoading ? [] : userData?.data
-        ?.filter((person) => person?.role === 'seller');
-      setValue('seller', sellerData[0]?.id);
-      return sellerData;
-    },
-    [userData, isLoading, setValue],
-  );
+  const sellers = useMemo(() => {
+    const sellerData = isLoading
+      ? []
+      : userData?.data?.filter((person) => person?.role === 'seller');
+    setValue('seller', sellerData[0]?.id);
+    return sellerData;
+  }, [userData, isLoading, setValue]);
 
   console.log('test');
 
@@ -62,8 +61,13 @@ function CheckoutForms({ totalPrice, products }) {
         headers: { Authorization: getLocalStorage('user')?.token },
         data: payload,
       };
-
-      const { data: { response: { data: { id } } } } = await axios.request(postOptions);
+      const {
+        data: {
+          response: {
+            data: { id },
+          },
+        },
+      } = await axios.request(postOptions);
       push(`/customer/orders/${id}`);
     } catch (error) {
       console.log(error);
@@ -130,12 +134,14 @@ function CheckoutForms({ totalPrice, products }) {
 
 CheckoutForms.propTypes = {
   totalPrice: PropTypes.string.isRequired,
-  products: PropTypes.shape({
-    urlImage: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-  }).isRequired,
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      urlImage: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+    }).isRequired,
+  ).isRequired,
 };
 
 export default CheckoutForms;
