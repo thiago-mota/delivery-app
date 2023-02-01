@@ -1,4 +1,6 @@
 .container {
+  border: 0.1rem solid var(--bg-light);
+  border-radius: 1rem;
   display: flex;
   flex-direction: row;
   height: 5rem;
@@ -7,10 +9,14 @@
 }
 
 .quantity-controller {
+  background-color: var(--bg-light);
+  border: none;
+  border-radius: 1rem;
   width: 30%;
 }
 
 .quantity-display {
+  border: none;
   text-align: center;
   width: 40%;
 }

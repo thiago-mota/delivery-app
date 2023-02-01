@@ -3,11 +3,11 @@ import CardSales from '../../components/CardSales/CardSales';
 import Header from '../../components/Header/Header';
 import useFetch from '../../hooks/useFetch';
 import { getLocalStorage } from '../../utils/localStorage';
-import styles from './Sales.module.css';
+import styles from './Customer.module.css';
 
-const role = 'seller';
+const role = 'customer';
 
-function Sales() {
+function CustomerOrders() {
   const fetchOptions = useMemo(() => ({
     method: 'get',
     url: 'http://localhost:3001/checkout',
@@ -17,9 +17,9 @@ function Sales() {
   const [data, isLoading] = useFetch(fetchOptions);
   const datas = data?.data;
   return (
-    <div className={ styles['pedidos-page'] }>
+    <div className={ styles['orders-page'] }>
       <Header />
-      <div className={ styles['pedidos-container'] }>
+      <div className={ styles.container }>
 
         {!isLoading
             && datas?.map((index) => (
@@ -33,4 +33,4 @@ function Sales() {
   );
 }
 
-export default Sales;
+export default CustomerOrders;

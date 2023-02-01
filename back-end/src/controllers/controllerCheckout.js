@@ -24,6 +24,20 @@ const getAll = async (_req, res) => {
   }
 };
 
+const updateStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const updatedStatus = await serviceCheckout.updateStatusService(id, status);
+
+    res.status(200).json(updatedStatus);
+  } catch (e) {
+    console.log(e.message);
+    res.status(500).json({ message: "Ocorreu um erro" });
+  }
+};
+
 const getOne = async (req, res) => {
   try {
     const { id } = req.params;
@@ -31,8 +45,8 @@ const getOne = async (req, res) => {
     return res.status(200).json(sales);
   } catch (e) {
     console.log(e.message);
-    res.status(500).json({ message: 'Ocorreu um erro' });
+    res.status(500).json({ message: "Ocorreu um erro" });
   }
 };
 
-module.exports = { requestId, getAll, getOne };
+module.exports = { requestId, getAll, getOne, updateStatus };

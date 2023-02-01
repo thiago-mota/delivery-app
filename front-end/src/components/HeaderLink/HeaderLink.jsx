@@ -20,7 +20,7 @@ function HeaderLink() {
           data-testid="customer_products__element-navbar-link-orders"
           className={ styles.links }
         >
-          Produtos
+          Pedidos
         </NavLink>
       </Route>
       <Route exact path="/admin/manage" />
@@ -30,7 +30,7 @@ function HeaderLink() {
           data-testid="customer_products__element-navbar-link-orders"
           className={ styles.links }
         >
-          Produtos
+          Gerenciar Usuários
         </NavLink>
       </Route>
     </Switch>
