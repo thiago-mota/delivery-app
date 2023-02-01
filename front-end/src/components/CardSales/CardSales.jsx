@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Card.module.css';
 
-function SaleCard({ order, role }) {
+function CardSales({ order, role, dataTestid }) {
   const { id, status, saleDate, totalPrice, deliveryAddress } = order;
 
   return (
@@ -13,14 +13,14 @@ function SaleCard({ order, role }) {
 
         <div
           className={ styles.id }
-          data-testid={ `seller_orders__element-order-id-${id}` }
+          data-testid={ `${dataTestid}_orders__element-order-id-${id}` }
         >
           <p>{`Pedido ${id}`}</p>
         </div>
 
         <div
           className={ styles.status }
-          data-testid={ `seller_orders__element-delivery-status-${id}` }
+          data-testid={ `${dataTestid}_orders__element-delivery-status-${id}` }
         >
           <p>{status}</p>
         </div>
@@ -30,14 +30,14 @@ function SaleCard({ order, role }) {
 
             <p
               className={ styles['date-value'] }
-              data-testid={ `seller_orders__element-order-date-${id}` }
+              data-testid={ `${dataTestid}_orders__element-order-date-${id}` }
             >
               { moment(saleDate).format('DD/MM/YYYY') }
             </p>
 
             <p
               className={ styles['date-value'] }
-              data-testid={ `seller_orders__element-card-price-${id}` }
+              data-testid={ `${dataTestid}_orders__element-card-price-${id}` }
             >
               {`R$ ${totalPrice}`.split('.').join(',')}
             </p>
@@ -46,9 +46,9 @@ function SaleCard({ order, role }) {
           { deliveryAddress && (
             <div
               className={ styles.address }
-              data-testid={ `seller_orders__element-card-address-${id}` }
+              data-testid={ `${dataTestid}_orders__element-card-address-${id}` }
             >
-              <p>{deliveryAddress}</p>
+              <h2>{deliveryAddress}</h2>
             </div>
           )}
         </div>
@@ -58,7 +58,7 @@ function SaleCard({ order, role }) {
   );
 }
 
-SaleCard.propTypes = {
+CardSales.propTypes = {
   order: PropTypes.shape({
     id: PropTypes.number,
     status: PropTypes.string,
@@ -67,6 +67,7 @@ SaleCard.propTypes = {
     deliveryAddress: PropTypes.string,
   }).isRequired,
   role: PropTypes.string.isRequired,
+  dataTestid: PropTypes.string.isRequired,
 };
 
-export default SaleCard;
+export default CardSales;

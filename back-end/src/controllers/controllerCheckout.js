@@ -24,5 +24,23 @@ const getAll = async (_req, res) => {
   }
 };
 
+<<<<<<< HEAD
 
 module.exports = { requestId, getAll };
+=======
+const updateStatus = async (req, res) => {
+  try { 
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const updatedStatus = await serviceCheckout.updateStatusService(id, status);
+
+    res.status(200).json(updatedStatus);
+  } catch (e) {
+    console.log(e.message);
+    res.status(500).json({ message: 'Ocorreu um erro' });
+  }
+};
+
+module.exports = { requestId, getAll, updateStatus };
+>>>>>>> 2b40d35f0a9d7965ba28c154d5ed834773ebc685

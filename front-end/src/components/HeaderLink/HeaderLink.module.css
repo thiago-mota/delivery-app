@@ -1,13 +1,12 @@
 .links {
   align-items: center;
-  all: unset;
-  background-color: black;
-  color: white;
+  color: var(--primary);
   cursor: pointer;
   display: flex;
-  font-size: 3rem;
-  font-weight: 500;
+  font-size: 2rem;
+  font-weight: 700;
   justify-content: center;
   text-align: center;
+  text-decoration: none;
   width: 50%;
 }

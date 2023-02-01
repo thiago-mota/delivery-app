@@ -1,0 +1,13 @@
+.container {
+  margin: 5rem;
+}
+
+.card h2 {
+  display: none;
+}
+
+.card .status {
+  background-color: red;
+  height: 12rem;
+  width: 12rem;
+}
