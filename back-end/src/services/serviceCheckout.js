@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
-const { Sale, SalesProduct, User, Product } = require("../database/models");
+const jwt = require('jsonwebtoken');
+const { Sale, SalesProduct, User, Product } = require('../database/models');
 
 const decodeToken = async (token) => {
   const decodedToken = jwt.decode(token);
@@ -10,7 +10,7 @@ const createSaleProducts = async (products, saleId) => {
   Promise.all(
     products.map(async ({ id, quantity }) => {
       await SalesProduct.create({ saleId, productId: id, quantity });
-    })
+    }),
   );
 };
 
@@ -19,16 +19,11 @@ const createSale = async (body, token) => {
     const decode = await decodeToken(token);
     const { products, ...rest } = body;
     const date = new Date();
-    const statusMessage = rest.status || "Pendente";
+    const statusMessage = rest.status || 'Pendente';
     const {
       dataValues: { id: userId },
     } = await User.findOne({ where: { name: decode.name } });
-    const data = await Sale.create({
-      ...rest,
-      saleDate: date,
-      status: statusMessage,
-      userId,
-    });
+    const data = await Sale.create({ ...rest, saleDate: date, status: statusMessage, userId });
     await createSaleProducts(products, data.id);
     return { data };
   } catch (err) {
@@ -45,8 +40,8 @@ const getOneService = async (id) => {
   const sales = await Sale.findAll({
     where: { id },
     include: [
-      { model: Product, as: "products" },
-      { model: User, as: "seller" },
+      { model: Product, as: 'products' },
+      { model: User, as: 'seller' },
     ],
   });
   return sales;
