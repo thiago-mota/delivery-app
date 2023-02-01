@@ -3,7 +3,7 @@ import CardSales from '../../components/CardSales/CardSales';
 import Header from '../../components/Header/Header';
 import useFetch from '../../hooks/useFetch';
 import { getLocalStorage } from '../../utils/localStorage';
-import styles from './Customer.module.css';
+import styles from './CustomerOrders.module.css';
 
 const role = 'customer';
 

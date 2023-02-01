@@ -1,13 +1,12 @@
 .container {
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
   margin: 5rem;
 }
 
-.card h2 {
-  display: none;
-}
-
-.card .status {
+/* .card .status {
   background-color: red;
   height: 12rem;
   width: 12rem;
-}
+} */
