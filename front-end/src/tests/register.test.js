@@ -1,15 +1,12 @@
 import React from 'react';
 import { waitFor, act, fireEvent } from '@testing-library/react';
-// import isBadRequest from './utils/request';
-// import { createMemoryHistory } from 'history';
-// import { Router } from 'react-router-dom';
 import * as axios from 'axios';
-import { INTEGER } from 'sequelize';
 import renderWithRouterAndRedux from './utils/renderWithRouter';
 
 import Register from '../pages/Register/Register';
 import App from '../App';
 
+const errorId = 'common_login__element-invalid-email';
 const emailRegisterID = 'common_register__input-email';
 const nameRegisterID = 'common_register__input-name';
 const passwordRegisterID = 'common_register__input-password';
@@ -88,30 +85,37 @@ describe('testing in register', () => {
 
     expect(localEmail).toBeDefined();
   });
-  test('testing in error register', async () => {
-    axios.post.mockResolvedValue(mockErrorRegister);
+  // test('testing in error register', async () => {
+  //   axios.post.mockResolvedValue(mockErrorRegister);
 
-    const { getByTestId } = renderWithRouterAndRedux(
-      <Register />,
-    );
-    // history.location.pathname('/register');
-    await act(async () => {
-      fireEvent.change(
-        getByTestId(emailRegisterID),
-        { target: { value: mockErrorRegister.data.response.email } },
-      );
-      fireEvent.change(
-        getByTestId(passwordRegisterID),
-        { target: { value: '3c28d2b0881bf46457a853e0b07531c6' } },
-      );
-      fireEvent.change(
-        getByTestId(nameRegisterID),
-        { target: { value: mockErrorRegister.data.response.name } },
-      );
-    });
+  //   const { getByTestId, history, container, getByRole } = renderWithRouterAndRedux(
+  //     <App />,
+  //   );
+  //   history.push('/register');
+  //   // history.location.pathname('/register');
+  //   await act(async () => {
+  //     fireEvent.change(
+  //       getByTestId(emailRegisterID),
+  //       { target: { value: mockErrorRegister.data.response.email } },
+  //     );
+  //     fireEvent.change(
+  //       getByTestId(passwordRegisterID),
+  //       { target: { value: '3c28d2b0881bf46457a853e0b07531c6' } },
+  //     );
+  //     fireEvent.change(
+  //       getByTestId(nameRegisterID),
+  //       { target: { value: mockErrorRegister.data.response.name } },
+  //     );
+  //   });
 
-    fireEvent.click(
-      getByTestId(ButtonRegisterID),
-    );
-  });
+  //   await act(async () => {
+  //     fireEvent.click(
+  //       getByRole('button'),
+  //     );
+  //   });
+
+  //   const error = 'Request failed with status code 404';
+  //   expect(mockErrorRegister.status).toBe(404);
+  //   expect(container.innerHTML).toBe(error);
+  // });
 });

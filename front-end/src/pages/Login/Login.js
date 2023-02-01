@@ -14,7 +14,6 @@ const SUCCESS = 200;
 
 function Login() {
   const [isError, setIsError] = useState([]);
-  console.log(isError);
   const { push } = useHistory();
   const {
     register,
@@ -53,7 +52,7 @@ function Login() {
       setLocalStorage('user', response);
       handleRedirect(response.role);
     } catch (error) {
-      console.log(error);
+      console.log(errors, 'err');
       const errorMessage = error?.response?.data?.message || error.message;
       setIsError([errorMessage]);
     }
