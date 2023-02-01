@@ -42,14 +42,13 @@ const getAllService = async () => {
   return sales;
 };
 const getOneService = async (id) => {
-  const sales = await SalesProduct.findAll({
-    where: { saleId: id },
+  const sales = await Sale.findAll({
+    where: { id },
     include: [
       { model: Product, as: "products" },
-      { model: Sale, as: "sales" },
+      { model: User, as: "seller" },
     ],
   });
-  console.log(sales, "service");
   return sales;
 };
 

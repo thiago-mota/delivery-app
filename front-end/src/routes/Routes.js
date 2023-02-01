@@ -15,6 +15,9 @@ function Routes() {
       <Route path="/customer/orders/:id">
         <OrderDetail />
       </Route>
+      {/* <Route path="/customer/orders">
+        <Orders />
+      </Route> */}
       <Route path="/customer/products">
         <CustomerProducts />
       </Route>
