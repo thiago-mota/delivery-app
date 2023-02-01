@@ -28,7 +28,6 @@ function Login() {
     criteriaMode: 'all',
     mode: 'onChange',
   });
-
   const handleRedirect = (role) => {
     switch (role) {
     case 'administrator':
@@ -53,7 +52,7 @@ function Login() {
       setLocalStorage('user', response);
       handleRedirect(response.role);
     } catch (error) {
-      console.log(errors, error);
+      console.log(errors, 'err');
       const errorMessage = error?.response?.data?.message || error.message;
       setIsError([errorMessage]);
     }
