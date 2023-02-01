@@ -5,6 +5,7 @@ import OrderTable from '../../components/OrderTable/OrderTable';
 import useFetch from '../../hooks/useFetch';
 import { priceFormatter } from '../../utils/dataFormat';
 import { getLocalStorage } from '../../utils/localStorage';
+import styles from './OrderDetail.module.css';
 
 const numberFormatter = new Intl.NumberFormat('pt-BR', {
   minimumIntegerDigits: 4,
@@ -38,21 +39,29 @@ function OrderDetail() {
   return (
     <div>
       <Header />
-      <h2>Detalhes do Pedido</h2>
-      <section>
-        <div>
-          <span>{'Pedido '}</span>
-          <span data-testid={ DATA_TESTID.orderId }>
-            {numberFormatter.format(data[0].id)}
-          </span>
-          <span data-testid={ DATA_TESTID.seller }>
+      <h2 className={ styles.title }>Detalhes do Pedido</h2>
+      <section className={ styles.container }>
+        <div className={ styles.head }>
+          <div className={ styles.pedido }>
+            <span>{'Pedido '}</span>
+            <span data-testid={ DATA_TESTID.orderId }>
+              {numberFormatter.format(data[0].id)}
+            </span>
+          </div>
+          <span className={ styles.name } data-testid={ DATA_TESTID.seller }>
             {data[0].seller.name}
           </span>
-          <span data-testid={ DATA_TESTID.date }>
+          <span className={ styles.date } data-testid={ DATA_TESTID.date }>
             {dateFormatter.format(new Date(data[0].saleDate))}
           </span>
-          <span data-testid={ DATA_TESTID.status }>{data[0].status}</span>
+          <span
+            className={ styles.status }
+            data-testid={ DATA_TESTID.status }
+          >
+            {data[0].status}
+          </span>
           <button
+            className={ styles.button }
             data-testid={ DATA_TESTID.submit }
             type="button"
             disabled={ data[0].status !== 'Em Trânsito' }
@@ -62,7 +71,7 @@ function OrderDetail() {
           </button>
         </div>
         <OrderTable products={ data[0].products } />
-        <div>
+        <div className={ styles.total }>
           <span data-testid="customer_order_details__element-order-total-price">
             {priceFormatter.format(data[0].totalPrice)}
           </span>

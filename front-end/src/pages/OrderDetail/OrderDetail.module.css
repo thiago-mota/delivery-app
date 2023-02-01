@@ -1,0 +1,71 @@
+.container {
+  background: #e0e0e0;
+  border-radius: 1rem;
+  box-shadow: 20px 20px 60px #bebebe , -20px -20px 60px var(--secondary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+.title {
+  margin-left: 5rem;
+  margin-top: 5rem;
+}
+
+.head {
+  background-color: var(--head-order);
+  border-radius: 1rem;
+  display: flex;
+}
+
+.head span {
+  font-size: 1.4rem;
+}
+
+.pedido {
+  font-weight: 600;
+  margin: 1rem;
+}
+
+.name {
+  margin: 1rem;
+}
+
+.date {
+  background-color: var(--data-value);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  margin: 0.5rem;
+  padding: 0.5rem 1.5rem;
+}
+
+.status {
+  background-color: var(--light-grenn);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  margin: 0.5rem;
+  padding: 0.5rem 1.5rem;
+}
+
+.button {
+  background-color: var(--dark-grenn);
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--secondary);
+  margin: 0.5rem;
+  padding: 0.5rem 1.5rem;
+}
+
+.total {
+  background-color: var(--dark-grenn);
+  border-radius: 0.5rem;
+  color: var(--secondary);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 3rem auto;
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  width: 5rem;
+}
