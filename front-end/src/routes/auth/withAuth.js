@@ -3,7 +3,8 @@ import { getLocalStorage } from '../../utils/localStorage';
 
 const withAuth = (component) => {
   const userData = getLocalStorage('user');
-  return userData?.token ? component : <Redirect to="/login" />;
+  console.log(userData?.role === 'customer');
+  return userData?.role === 'customer' ? <Redirect to="/customer/products" /> : component;
 };
 
 export default withAuth;

@@ -6,10 +6,8 @@ module.exports = {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        reference: {
-          model: 'salesProducts',
-          key: 'id'
-        }
+        primaryKey: true,
+        autoIncrement: true,
       },
       name: {
         type: Sequelize.STRING,

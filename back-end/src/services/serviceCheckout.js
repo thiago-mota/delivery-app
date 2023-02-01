@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { Sale, SalesProduct, User } = require('../database/models');
+const { Sale, SalesProduct, User, Product } = require('../database/models');
 
 const decodeToken = async (token) => {
   const decodedToken = jwt.decode(token);
@@ -20,14 +20,10 @@ const createSale = async (body, token) => {
     const { products, ...rest } = body;
     const date = new Date();
     const statusMessage = rest.status || 'Pendente';
-    const { dataValues: { id: userId } } = await User
-      .findOne({ where: { name: decode.name } });
-    const data = await Sale.create({
-      ...rest,
-      saleDate: date,
-      status: statusMessage,
-      userId,
-    });
+    const {
+      dataValues: { id: userId },
+    } = await User.findOne({ where: { name: decode.name } });
+    const data = await Sale.create({ ...rest, saleDate: date, status: statusMessage, userId });
     await createSaleProducts(products, data.id);
     return { data };
   } catch (err) {
@@ -38,6 +34,16 @@ const createSale = async (body, token) => {
 const getAllService = async () => {
   const sales = await Sale.findAll();
 
+  return sales;
+};
+const getOneService = async (id) => {
+  const sales = await Sale.findAll({
+    where: { id },
+    include: [
+      { model: Product, as: 'products' },
+      { model: User, as: 'seller' },
+    ],
+  });
   return sales;
 };
 
@@ -54,5 +60,6 @@ const updateStatusService = async (id, status) => {
 module.exports = {
   createSale,
   getAllService,
+  getOneService,
   updateStatusService,
 };
