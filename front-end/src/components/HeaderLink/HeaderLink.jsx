@@ -14,7 +14,7 @@ function HeaderLink() {
           Produtos
         </NavLink>
       </Route>
-      <Route exact path="/seller/orders">
+      <Route path="/seller/orders">
         <NavLink
           to="/seller/orders"
           data-testid="customer_products__element-navbar-link-orders"

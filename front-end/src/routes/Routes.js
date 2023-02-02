@@ -31,11 +31,10 @@ function Routes() {
       <Route path="/admin/manage">
         <AdminManager />
       </Route>
+      <Route path="/seller/orders/:id" component={ OrderDetail } />
       <Route path="/seller/orders" component={ Sales } />
       <Route path="/register" component={ Register } />
-      <Route path="/login">
-        {withAuth(<Login />)}
-      </Route>
+      <Route path="/login">{withAuth(<Login />)}</Route>
       <Redirect exact from="/" to="/login" />
     </Switch>
   );

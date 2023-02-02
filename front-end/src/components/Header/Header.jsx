@@ -1,18 +1,27 @@
 import React, { useMemo } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { NavLink, Redirect, useHistory } from 'react-router-dom';
+import { logoutAction } from '../../redux/actions/cartActions';
 import { getLocalStorage } from '../../utils/localStorage';
 import HeaderLink from '../HeaderLink/HeaderLink';
 import styles from './Header.module.css';
 
 function Header() {
   const userData = useMemo(() => getLocalStorage('user'), []);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    dispatch(logoutAction());
+    return <Redirect to="/login" />;
+  };
 
   return (
     <header className={ styles.container }>
       <div className={ styles['margin-container'] }>
         <nav className={ styles['common-links-container'] }>
           <HeaderLink />
-          {userData.role === 'customer' && (
+          {userData?.role === 'customer' && (
             <NavLink
               to="/customer/orders"
               data-testid="customer_products__element-navbar-link-orders"
@@ -27,10 +36,10 @@ function Header() {
             className={ styles['user-name'] }
             data-testid="customer_products__element-navbar-user-full-name"
           >
-            {userData.name}
+            {userData?.name}
           </span>
           <NavLink
-            onClick={ () => localStorage.removeItem('user') }
+            onClick={ handleLogout }
             to="/login"
             data-testid="customer_products__element-navbar-link-logout"
             className={ styles.logout }
