@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { getLocalStorage } from '../../utils/localStorage';
 import styles from './AdminRegister.module.css';
 
 const STYLE_CLASSNAMES = {
@@ -34,10 +35,18 @@ function AdminRegister() {
 
   const onSubmit = async (formData) => {
     try {
-      const data = await axios.post(
-        'http://localhost:3001/users',
-        formData,
-      );
+      const config = {
+        headers: {
+          Authorization: getLocalStorage('user')?.token,
+        },
+      };
+
+      const data = await axios.post('http://localhost:3001/users', formData, config);
+
+      // const data = await axios.post(
+      //   'http://localhost:3001/users',
+      //   formData,
+      // );
       console.log(data);
     } catch (error) {
       console.log(error);
