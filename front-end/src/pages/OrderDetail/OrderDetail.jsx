@@ -73,7 +73,7 @@ function OrderDetail() {
         <OrderTable products={ data[0].products } />
         <div className={ styles.total }>
           <span data-testid="customer_order_details__element-order-total-price">
-            {priceFormatter.format(data[0].totalPrice)}
+            {`Total: R$ ${priceFormatter.format(data[0].totalPrice)}`}
           </span>
         </div>
       </section>

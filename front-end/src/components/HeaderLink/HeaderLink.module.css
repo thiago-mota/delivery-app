@@ -10,3 +10,9 @@
   text-decoration: none;
   width: 50%;
 }
+
+.links:hover {
+  transition: 400ms;
+  background-color: var(--hover-grenn-dark);
+  color: var(--secondary);
+}

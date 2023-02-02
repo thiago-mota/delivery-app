@@ -40,6 +40,12 @@
   width: 50%;
 }
 
+.product-orders:hover {
+  color: var(--primary);
+  transition: 400ms;
+  background-color: var(--hover-grenn-light);
+}
+
 .user-name {
   color: var(--secondary);
   font-size: 2rem;
@@ -61,4 +67,9 @@
   text-align: center;
   text-decoration: none;
   width: 50%;
+}
+
+.logout:hover {
+  transition: 400ms;
+  background-color: var(--hover-blue);
 }

@@ -13,6 +13,12 @@
   border: none;
   border-radius: 1rem;
   width: 30%;
+  cursor: pointer;
+}
+
+.quantity-controller:hover {
+  transition: 400ms;
+  background-color: var(--bg-dark);
 }
 
 .quantity-display {
