@@ -1,15 +1,20 @@
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
-import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import { getLocalStorage } from '../../utils/localStorage';
+import styles from './CheckoutForms.module.css';
 
 const fetchOptions = {
   method: 'get',
   url: 'http://localhost:3001/users',
   headers: { Authorization: getLocalStorage('user')?.token },
+};
+
+const STYLE_CLASSNAMES = {
+  FORM_LABEL: 'form-label',
 };
 
 function CheckoutForms({ totalPrice, products }) {
@@ -76,45 +81,42 @@ function CheckoutForms({ totalPrice, products }) {
   };
 
   return (
-    <div>
+    <div className={ styles['form-container'] }>
       <h2>Detalhes e Endereço para Entrega</h2>
-      <section>
-        <form onSubmit={ handleSubmit(onSubmit) }>
-          <label htmlFor="text">
-            Endereço
-            <input
-              type="text"
-              id="text"
-              data-testid="customer_checkout__input-address"
-              { ...register('address', {
-                required: 'Endereço é obrigatório',
-              }) }
-            />
-          </label>
-          <label htmlFor="text">
-            Número
-            <input
-              type="text"
-              id="text"
-              data-testid="customer_checkout__input-address-number"
-              { ...register('number', {
-                required: 'Número é obrigatório',
-                pattern: {
-                  value: /[0-9]/,
-                  message: 'Coloque um número válido',
-                },
-              }) }
-            />
-          </label>
-          <button
-            type="submit"
-            data-testid="customer_checkout__button-submit-order"
-            disabled={ !isValid }
-          >
-            FINALIZAR PEDIDO
-          </button>
+      <form className={ styles.form } onSubmit={ handleSubmit(onSubmit) }>
+        <label className={ styles[STYLE_CLASSNAMES.FORM_LABEL] } htmlFor="text">
+          Endereço
+          <input
+            className={ styles.inputs }
+            type="text"
+            id="text"
+            data-testid="customer_checkout__input-address"
+            { ...register('address', {
+              required: 'Endereço é obrigatório',
+            }) }
+          />
+        </label>
+        <label className={ styles[STYLE_CLASSNAMES.FORM_LABEL] } htmlFor="text">
+          Número
+          <input
+            className={ styles.inputs }
+            type="text"
+            id="text"
+            data-testid="customer_checkout__input-address-number"
+            { ...register('number', {
+              required: 'Número é obrigatório',
+              pattern: {
+                value: /[0-9]/,
+                message: 'Coloque um número válido',
+              },
+            }) }
+          />
+        </label>
+
+        <label className={ styles[STYLE_CLASSNAMES.FORM_LABEL] } htmlFor="select">
           <span>P.Vendedora Responsável:</span>
           <select
+            className={ styles.inputs }
             { ...register('seller') }
             data-testid="customer_checkout__select-seller"
           >
@@ -125,9 +127,16 @@ function CheckoutForms({ totalPrice, products }) {
               </option>
             ))}
           </select>
-          ;
-        </form>
-      </section>
+        </label>
+        <button
+          className={ styles.button }
+          type="submit"
+          data-testid="customer_checkout__button-submit-order"
+          disabled={ !isValid }
+        >
+          FINALIZAR PEDIDO
+        </button>
+      </form>
     </div>
   );
 }

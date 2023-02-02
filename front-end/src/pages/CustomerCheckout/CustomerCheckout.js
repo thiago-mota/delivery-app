@@ -4,14 +4,15 @@ import CartProduct from '../../components/CartProduct/CartProduct';
 import CheckoutForms from '../../components/CheckoutForms/CheckoutForms';
 import Header from '../../components/Header/Header';
 import calculateTotalPrice from '../../utils/calculateTotalPrice';
+import styles from './CustomerCheckout.module.css';
 
 function CustomerCheckout() {
   const { cartProducts } = useSelector((store) => store.cart);
   const totalPrice = useMemo(() => calculateTotalPrice(cartProducts), [cartProducts]);
   return (
-    <div>
+    <div className={ styles['checkout-page'] }>
       <Header />
-      <table>
+      <table className={ styles.tableCheck }>
         <thead>
           <tr>
             <th>Item</th>
@@ -27,17 +28,16 @@ function CustomerCheckout() {
             <CartProduct product={ product } index={ index } key={ product.id } />
           ))}
         </tbody>
+        <div className={ styles.price }>
+          <h3 className={ styles.total }>
+            {'Total: R$ '}
+            <span data-testid="customer_checkout__element-order-total-price">
+              {totalPrice}
+            </span>
+          </h3>
+        </div>
       </table>
-      <div>
-        <h3>
-          {'Total: R$ '}
-          <span data-testid="customer_checkout__element-order-total-price">
-            {totalPrice}
-          </span>
-        </h3>
-      </div>
       <CheckoutForms totalPrice={ totalPrice } products={ cartProducts } />
-      <section />
     </div>
   );
 }

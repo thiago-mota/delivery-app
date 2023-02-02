@@ -1,11 +1,12 @@
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import styles from './Card.module.css';
 
 function CardSales({ order, role, dataTestid }) {
-  const { id, status, saleDate, totalPrice, deliveryAddress } = order;
+  const { id, status, saleDate, totalPrice, deliveryAddress, deliveryNumber } = order;
+  const match = useRouteMatch();
 
   return (
     <Link className={ styles['link-card'] } to={ `/${role}/orders/${id}` }>
@@ -43,14 +44,15 @@ function CardSales({ order, role, dataTestid }) {
             </p>
           </div>
 
-          { deliveryAddress && (
+          { match.path === '/seller/orders' && (
             <div
               className={ styles.address }
               data-testid={ `${dataTestid}_orders__element-card-address-${id}` }
             >
-              <h2>{deliveryAddress}</h2>
+              <h2>{`${deliveryAddress}, ${deliveryNumber}`}</h2>
             </div>
           )}
+
         </div>
 
       </div>
@@ -65,6 +67,7 @@ CardSales.propTypes = {
     saleDate: PropTypes.instanceOf(),
     totalPrice: PropTypes.string,
     deliveryAddress: PropTypes.string,
+    deliveryNumber: PropTypes.string,
   }).isRequired,
   role: PropTypes.string.isRequired,
   dataTestid: PropTypes.string.isRequired,

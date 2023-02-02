@@ -1,7 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { removeItem } from '../../redux/actions/cartActions';
+import styles from './CartProduct.module.css';
 
 const priceFormatter = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2 });
 
@@ -12,7 +13,7 @@ function CartProduct({ product, index }) {
   };
 
   return (
-    <tr>
+    <tr className={ styles['table-tr'] }>
       <td
         data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
       >
@@ -40,6 +41,7 @@ function CartProduct({ product, index }) {
         data-testid={ `customer_checkout__element-order-table-remove-${index}` }
       >
         <button
+          className={ styles.button }
           type="button"
           onClick={ () => {
             handleRemove(product);
