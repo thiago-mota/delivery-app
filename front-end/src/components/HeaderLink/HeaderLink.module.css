@@ -12,7 +12,7 @@
 }
 
 .links:hover {
-  transition: 400ms;
   background-color: var(--hover-grenn-dark);
   color: var(--secondary);
+  transition: 400ms;
 }

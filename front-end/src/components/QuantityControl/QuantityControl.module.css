@@ -12,13 +12,13 @@
   background-color: var(--bg-light);
   border: none;
   border-radius: 1rem;
-  width: 30%;
   cursor: pointer;
+  width: 30%;
 }
 
 .quantity-controller:hover {
-  transition: 400ms;
   background-color: var(--bg-dark);
+  transition: 400ms;
 }
 
 .quantity-display {

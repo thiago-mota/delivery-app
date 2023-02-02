@@ -41,9 +41,9 @@
 }
 
 .product-orders:hover {
+  background-color: var(--hover-grenn-light);
   color: var(--primary);
   transition: 400ms;
-  background-color: var(--hover-grenn-light);
 }
 
 .user-name {
@@ -70,6 +70,6 @@
 }
 
 .logout:hover {
-  transition: 400ms;
   background-color: var(--hover-blue);
+  transition: 400ms;
 }

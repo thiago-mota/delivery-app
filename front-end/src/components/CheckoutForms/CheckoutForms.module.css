@@ -22,8 +22,8 @@
 }
 
 .button:hover {
-  transition: 400ms;
   background-color: var(--hover-grenn-light);
+  transition: 400ms;
 }
 
 .form {

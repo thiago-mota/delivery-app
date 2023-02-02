@@ -13,9 +13,10 @@
 
 .products-container {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
+  justify-content: center;
+
   /* display: grid;
   gap: 2rem;
   grid-template-columns: 1fr 1fr 1fr 1fr; */
