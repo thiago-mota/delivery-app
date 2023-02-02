@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { NavLink, Redirect, useHistory } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { logoutAction } from '../../redux/actions/cartActions';
 import { getLocalStorage } from '../../utils/localStorage';
 import HeaderLink from '../HeaderLink/HeaderLink';
