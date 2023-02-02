@@ -1,0 +1,7 @@
+.button {
+  background: none;
+  border: none;
+  color: var(--secondary);
+  cursor: pointer;
+  padding: 0.6rem 5rem;
+}

@@ -1,0 +1,97 @@
+.tableCheck {
+  align-items: center;
+  background: #e0e0e0;
+  border-radius: 1rem;
+  box-shadow: 20px 20px 60px #bebebe , -20px -20px 60px var(--secondary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5rem;
+}
+
+.tableCheck th {
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding-right: 5rem;
+}
+
+.tableCheck td {
+  box-shadow: 0 6px 14px 0 rgba(59, 58, 58, 0.75);
+  color: var(--secondary);
+  font-size: 1.5rem;
+  padding-bottom: 0.6rem;
+  padding-top: 0.6rem;
+  text-align: center;
+}
+
+.price {
+  background-color: var(--dark-grenn);
+  border-radius: 0.5rem;
+  color: var(--secondary);
+  margin: 2rem;
+  text-align: center;
+  width: 20rem;
+}
+
+.total {
+  font-size: 2rem;
+}
+
+.tableCheck th:nth-child( 1 ) {
+  padding-right: 10rem;
+}
+
+.tableCheck th:nth-child( 2 ) {
+  padding-right: 10rem;
+}
+
+.tableCheck th:nth-child( 3 ) {
+  padding-right: 6rem;
+}
+
+.tableCheck th:nth-child( 4 ) {
+  padding-right: 5rem;
+}
+
+.tableCheck th:nth-child( 5 ) {
+  padding-right: 8rem;
+}
+
+.tableCheck th:nth-child( 6 ) {
+  padding: 0;
+}
+
+.tableCheck td:nth-child( 1 ) {
+  background-color: var(--light-grenn);
+  border-radius: 1rem 0 0 1rem;
+  color: var(--primary);
+  width: 5rem;
+}
+
+.tableCheck td:nth-child( 2 ) {
+  background-color: var(--secondary);
+  color: var(--primary);
+  width: 25rem;
+}
+
+.tableCheck td:nth-child( 3 ) {
+  background-color: var(--dark-grenn);
+  width: 15rem;
+}
+
+.tableCheck td:nth-child( 4 ) {
+  background-color: var(--purple);
+  width: 15rem;
+}
+
+.tableCheck td:nth-child( 5 ) {
+  background-color: var(--light-blue);
+  width: 15rem;
+}
+
+.tableCheck td:nth-child( 6 ) {
+  background-color: var(--light-grenn);
+  border-radius: 0 1rem 1rem 0;
+  padding: 0;
+}
+

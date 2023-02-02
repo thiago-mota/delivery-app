@@ -6,6 +6,7 @@ import OrderTable from '../../components/OrderTable/OrderTable';
 import useFetch from '../../hooks/useFetch';
 import { priceFormatter } from '../../utils/dataFormat';
 import { getLocalStorage } from '../../utils/localStorage';
+// import styles from './OrderDetail.module.css';
 
 const numberFormatter = new Intl.NumberFormat('pt-BR', {
   minimumIntegerDigits: 4,

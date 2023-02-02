@@ -1,10 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { priceFormatter } from '../../utils/dataFormat';
+import styles from './OrderTable.module.css';
 
 function OrderTable({ products, role }) {
   return (
-    <table>
+    <table className={ styles.table }>
       <thead>
         <tr>
           <th>Item</th>
