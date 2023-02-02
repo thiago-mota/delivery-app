@@ -43,10 +43,6 @@ function AdminRegister() {
 
       const data = await axios.post('http://localhost:3001/users', formData, config);
 
-      // const data = await axios.post(
-      //   'http://localhost:3001/users',
-      //   formData,
-      // );
       console.log(data);
     } catch (error) {
       console.log(error);
