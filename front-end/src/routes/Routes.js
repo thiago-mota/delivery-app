@@ -7,8 +7,8 @@ import CustomerProducts from '../pages/CustomerProducts/CustomerProducts';
 import Login from '../pages/Login/Login';
 import OrderDetail from '../pages/OrderDetail/OrderDetail';
 import Register from '../pages/Register/Register';
-import withAuth from './auth/withAuth';
 import Sales from '../pages/Sales/Sales';
+import withAuth from './auth/withAuth';
 
 function Routes() {
   return (
