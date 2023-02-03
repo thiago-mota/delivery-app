@@ -25,7 +25,11 @@ const useFetch = (options) => {
     };
     fetchData();
   }, [options]);
-  return [requestState.data, requestState.isLoading, requestState.isError];
+  return [
+    requestState.data,
+    requestState.isLoading,
+    requestState.isError,
+  ];
 };
 
 export default useFetch;
