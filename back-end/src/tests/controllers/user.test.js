@@ -6,7 +6,6 @@ const chaiHttp = require('chai-http');
 const { expect } = require('chai');
 const { allUsers } = require('../mocks/user');
 
-
 chai.use(chaiHttp);
 
 describe('test in route users', function () {
