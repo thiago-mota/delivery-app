@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, REMOVE_ITEM, SET_TO_CART } from '.';
+import { ADD_TO_CART, LOGOUT, REMOVE_FROM_CART, REMOVE_ITEM, SET_TO_CART } from '.';
 
 export const addToCart = (payload) => ({
   type: ADD_TO_CART,
@@ -18,4 +18,8 @@ export const setToCart = (payload) => ({
 export const removeItem = (productId) => ({
   type: REMOVE_ITEM,
   productId,
+});
+
+export const logoutAction = () => ({
+  type: LOGOUT,
 });

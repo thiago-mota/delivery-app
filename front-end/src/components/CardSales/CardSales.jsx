@@ -78,7 +78,7 @@ CardSales.propTypes = {
   order: PropTypes.shape({
     id: PropTypes.number,
     status: PropTypes.string,
-    saleDate: PropTypes.instanceOf(),
+    saleDate: PropTypes.string,
     totalPrice: PropTypes.string,
     deliveryAddress: PropTypes.string,
     deliveryNumber: PropTypes.string,

@@ -3,7 +3,7 @@ import React from 'react';
 import { priceFormatter } from '../../utils/dataFormat';
 import styles from './OrderTable.module.css';
 
-function OrderTable({ products }) {
+function OrderTable({ products, role }) {
   return (
     <table className={ styles.table }>
       <thead>
@@ -20,35 +20,35 @@ function OrderTable({ products }) {
           <tr key={ product.id }>
             <td
               data-testid={
-                `customer_order_details__element-order-table-item-number-${index}`
+                `${role}_order_details__element-order-table-item-number-${index}`
               }
             >
               {index}
             </td>
             <td
               data-testid={
-                `customer_order_details__element-order-table-name-${index}`
+                `${role}_order_details__element-order-table-name-${index}`
               }
             >
               {product.name}
             </td>
             <td
               data-testid={
-                `customer_order_details__element-order-table-quantity-${index}`
+                `${role}_order_details__element-order-table-quantity-${index}`
               }
             >
               {product.SalesProduct.quantity}
             </td>
             <td
               data-testid={
-                `customer_order_details__element-order-table-unit-price-${index}`
+                `${role}_order_details__element-order-table-unit-price-${index}`
               }
             >
               {`R$ ${product.price}`}
             </td>
             <td
               data-testid={
-                `customer_order_details__element-order-table-sub-total-${index}`
+                `${role}_order_details__element-order-table-sub-total-${index}`
               }
             >
               {`R$ ${priceFormatter
@@ -72,6 +72,7 @@ OrderTable.propTypes = {
       quantity: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired).isRequired,
+  role: PropTypes.string.isRequired,
 };
 
 export default OrderTable;

@@ -38,6 +38,7 @@ const getAll = async (req, res) => {
 };
 
 const updateStatus = async (req, res) => {
+  console.log('ouch');
   try {
     const { id } = req.params;
     const { status } = req.body;

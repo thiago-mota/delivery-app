@@ -56,10 +56,17 @@ const getOneService = async (id) => {
 };
 
 const updateStatusService = async (id, status) => {
+  console.log(id, status);
   try {
     const sale = await Sale.findByPk(id);
-    await sale.update({ status }, { where: { id } });
-    return sale;
+    await sale.update(
+      { status },
+      {
+        where: { id },
+      },
+    );
+    const updatedSale = await getOneService(id);
+    return updatedSale;
   } catch (error) {
     throw new Error(error);
   }
