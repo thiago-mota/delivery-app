@@ -44,15 +44,15 @@ function OrderTable({ products, role }) {
                 `${role}_order_details__element-order-table-unit-price-${index}`
               }
             >
-              {product.price}
+              {`R$ ${product.price}`}
             </td>
             <td
               data-testid={
                 `${role}_order_details__element-order-table-sub-total-${index}`
               }
             >
-              {priceFormatter
-                .format(parseFloat(product.price) * product.SalesProduct.quantity)}
+              {`R$ ${priceFormatter
+                .format(parseFloat(product.price) * product.SalesProduct.quantity)}`}
             </td>
           </tr>
         ))}

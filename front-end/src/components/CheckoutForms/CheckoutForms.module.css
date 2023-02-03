@@ -21,6 +21,11 @@
   padding: 0.1rem 5rem;
 }
 
+.button:hover {
+  background-color: var(--hover-grenn-light);
+  transition: 400ms;
+}
+
 .form {
   display: flex;
   padding: 2rem;

@@ -1,18 +1,21 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
+import { getLocalStorage } from '../../utils/localStorage';
 import styles from './AdminRegister.module.css';
 
 const STYLE_CLASSNAMES = {
   FORM_LABEL: 'form-label',
 };
 
-function AdminRegister() {
+function AdminRegister({ setRefetch }) {
   const [isError, setIsError] = useState([]);
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
+    reset,
   } = useForm({
     defaultValues: {
       name: '',
@@ -34,10 +37,15 @@ function AdminRegister() {
 
   const onSubmit = async (formData) => {
     try {
-      const data = await axios.post(
-        'http://localhost:3001/users',
-        formData,
-      );
+      const config = {
+        headers: {
+          Authorization: getLocalStorage('user')?.token,
+        },
+      };
+
+      const data = await axios.post('http://localhost:3001/users', formData, config);
+      setRefetch((prevState) => !prevState);
+      reset();
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -151,5 +159,9 @@ function AdminRegister() {
     </main>
   );
 }
+
+AdminRegister.propTypes = {
+  setRefetch: PropTypes.func.isRequired,
+};
 
 export default AdminRegister;

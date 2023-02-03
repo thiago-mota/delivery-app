@@ -11,6 +11,8 @@
 
   --gray: gray;
 
+  --green: green;
+
   --bg-dark: #b3ada7;
 
   --bg-light: #e0e0e0;
@@ -28,6 +30,12 @@
   --data-value: #f2fffcbf;
   
   --head-order: #d1d1d1;
+
+  --hover-grenn-light: #0b8b6e;
+
+  --hover-grenn-dark: #00523f;
+
+  --hover-blue: #104fa8;
 
   --title-font: 'Montserrat' , sans-serif;
 }

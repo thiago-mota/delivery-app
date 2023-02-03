@@ -1,7 +1,7 @@
 .login-page {
   align-items: center;
   background-color: var(--bg-light);
-  color: black;
+  color: var(--primary);
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -11,7 +11,7 @@
 .login-container {
   align-items: center;
   align-self: center;
-  background-color: white;
+  background-color: var(--secondary);
   border-radius: 20px;
   display: flex;
   filter: drop-shadow(0.5rem 0.5rem 2rem var(--bg-dark));
@@ -59,12 +59,12 @@
 }
 
 .form-validation {
-  color: gray;
+  color: var(--gray);
   font-size: 1.5rem;
 }
 
 .form-validation__success {
-  color: green;
+  color: var(--green);
 }
 
 .form-container button {
@@ -72,6 +72,7 @@
   background-color: var(--bg-light);
   border: 0.5rem solid var(--bg-light);
   border-radius: 1rem;
+  cursor: pointer;
   font-size: 2rem;
   font-weight: 600;
   height: 3rem;
@@ -94,7 +95,7 @@
 }
 
 .login-hero {
-  background-color: black;
+  background-color: var(--primary);
   background-image: url('../../images/cooking-small.jpg');
   border-radius: 1px 20px 20px 1px;
   flex-shrink: 1;
