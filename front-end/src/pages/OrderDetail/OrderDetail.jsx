@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import axios from 'axios';
+import React, { useMemo, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import OrderTable from '../../components/OrderTable/OrderTable';
@@ -12,30 +13,55 @@ const numberFormatter = new Intl.NumberFormat('pt-BR', {
   useGrouping: false,
 });
 
-const DATA_TESTID = {
-  orderId: 'customer_order_details__element-order-details-label-order-id',
-  seller: 'customer_order_details__element-order-details-label-seller-name',
-  date: 'customer_order_details__element-order-details-label-order-date',
-  status: 'customer_order_details__element-order-details-label-delivery-status',
-  submit: 'customer_order_details__button-delivery-check',
-};
-
 const dateFormatter = new Intl.DateTimeFormat('pt-br');
+
 function OrderDetail() {
   const {
     params: { id },
   } = useRouteMatch();
+  const userData = useMemo(() => getLocalStorage('user'), []);
   const fetchOptions = useMemo(
     () => ({
       method: 'get',
       url: `http://localhost:3001/customer/orders/${id}`,
-      headers: { Authorization: getLocalStorage('user')?.token },
+      headers: { Authorization: userData.token },
     }),
-    [id],
+    [id, userData],
   );
-  const [{ data }, isLoading] = useFetch(fetchOptions);
-  console.log(data);
-  if (isLoading) { return <span>Loading...</span>; }
+
+  const DATA_TESTID = {
+    orderId: `${userData.role}_order_details__element-order-details-label-order-id`,
+    seller: `${userData.role}_order_details__element-order-details-label-seller-name`,
+    date: `${userData.role}_order_details__element-order-details-label-order-date`,
+    status: `${userData.role}_order_details__element-order-details-label-delivery-status`,
+    submit: `${userData.role}_order_details__button-delivery-check`,
+    preparing: 'seller_order_details__button-preparing-check',
+    dispatch: 'seller_order_details__button-dispatch-check',
+    totalPrice: `${userData.role}_order_details__element-order-total-price`,
+  };
+
+  const isCustomer = userData?.role === 'customer';
+
+  const [apiResponse, isLoading] = useFetch(fetchOptions);
+  const [updatedResponse, setUpdatedResponse] = useState(null);
+
+  const handleUpdateOrder = async (status) => {
+    const updateOptions = {
+      url: `http://localhost:3001/checkout/${id}`,
+      method: 'put',
+      data: { status },
+      headers: { Authorization: getLocalStorage('user')?.token },
+    };
+
+    const response = await axios.request(updateOptions);
+    setUpdatedResponse(response);
+  };
+  if (isLoading || !apiResponse) {
+    return <span>Loading...</span>;
+  }
+
+  const data = updatedResponse?.data[0] || apiResponse.data[0];
+
   return (
     <div>
       <Header />
@@ -45,35 +71,61 @@ function OrderDetail() {
           <div className={ styles.pedido }>
             <span>{'Pedido '}</span>
             <span data-testid={ DATA_TESTID.orderId }>
-              {numberFormatter.format(data[0].id)}
+              {numberFormatter.format(data.id)}
             </span>
           </div>
-          <span className={ styles.name } data-testid={ DATA_TESTID.seller }>
-            {data[0].seller.name}
+          <span
+            className={ styles.name }
+            data-testid={ DATA_TESTID.seller }
+          >
+            {data.seller.name}
           </span>
           <span className={ styles.date } data-testid={ DATA_TESTID.date }>
-            {dateFormatter.format(new Date(data[0].saleDate))}
+            {dateFormatter.format(new Date(data.saleDate))}
           </span>
           <span
             className={ styles.status }
             data-testid={ DATA_TESTID.status }
           >
-            {data[0].status}
+            {data.status}
           </span>
-          <button
-            className={ styles.button }
-            data-testid={ DATA_TESTID.submit }
-            type="button"
-            disabled={ data[0].status !== 'Em Trânsito' }
-            onClick={ () => console.log('ouch') }
-          >
-            MARCAR COMO ENTREGUE
-          </button>
+          {isCustomer ? (
+            <button
+              className={ styles.button }
+              data-testid={ DATA_TESTID.submit }
+              type="button"
+              disabled={ data.status !== 'Em Trânsito' }
+              onClick={ () => handleUpdateOrder('Entregue') }
+            >
+              MARCAR COMO ENTREGUE
+            </button>
+          ) : (
+            <>
+              <button
+                className={ styles.button }
+                data-testid={ DATA_TESTID.preparing }
+                type="button"
+                disabled={ data.status !== 'Pendente' }
+                onClick={ () => handleUpdateOrder('Preparando') }
+              >
+                MARCAR COMO PREPARANDO
+              </button>
+              <button
+                className={ styles.button }
+                data-testid={ DATA_TESTID.dispatch }
+                type="button"
+                disabled={ data.status !== 'Preparando' }
+                onClick={ () => handleUpdateOrder('Em Trânsito') }
+              >
+                MARCAR COMO EM TRÂNSITO
+              </button>
+            </>
+          )}
         </div>
-        <OrderTable products={ data[0].products } />
+        <OrderTable products={ data.products } role={ userData.role } />
         <div className={ styles.total }>
-          <span data-testid="customer_order_details__element-order-total-price">
-            {`Total: R$ ${priceFormatter.format(data[0].totalPrice)}`}
+          <span data-testid={ DATA_TESTID.totalPrice }>
+            {`Total: R$ ${priceFormatter.format(data.totalPrice)}`}
           </span>
         </div>
       </section>
